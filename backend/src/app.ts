@@ -4,7 +4,7 @@ import express from "express";
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send("Home");
+  res.send("Home");
 });
 
 export default app;
