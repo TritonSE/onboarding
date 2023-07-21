@@ -15,7 +15,8 @@
     "start": "nodemon src/server.ts",
     "format": "prettier --write .",
     "lint-fix": "(eslint --fix --cache --report-unused-disable-directives . || true) && prettier --write .",
-    "lint-check": "eslint --cache --report-unused-disable-directives . && prettier --check ."
+    "lint-check": "eslint --cache --report-unused-disable-directives . && prettier --check .",
+    "prepare": "cd .. && husky install .husky"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +33,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.33.0",
+    "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.0",
     "ts-node": "^10.9.1",
