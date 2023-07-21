@@ -1,3 +1,7 @@
+/**
+ * Defines routes.
+ */
+
 import "dotenv/config";
 import express from "express";
 

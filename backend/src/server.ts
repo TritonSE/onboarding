@@ -1,3 +1,7 @@
+/**
+ * Initializes mongoose and express.
+ */
+
 import app from "./app";
 import env from "./util/validateEnv";
 import mongoose from "mongoose";
