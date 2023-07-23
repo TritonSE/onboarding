@@ -18,7 +18,6 @@ export const getTask: RequestHandler = async (req, res, next) => {
       throw createHttpError(404, "Task not found.");
     }
 
-    // if the task exists, it will be the only item within the array
     res.status(200).json(task);
   } catch (error) {
     // pass errors to the error handler
