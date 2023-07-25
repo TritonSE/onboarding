@@ -8,6 +8,11 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
   ],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -16,7 +21,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   ignorePatterns: [".eslintrc.cjs", "webpack.config.js"],
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "no-relative-import-paths"],
   rules: {
     "default-case": "off",
     "no-plusplus": "off",
@@ -59,5 +64,10 @@ module.exports = {
 
     // Stylistic rules.
     "lines-between-class-members": "off",
+
+    "no-relative-import-paths/no-relative-import-paths": [
+      "warn",
+      { allowSameFolder: true, rootDir: "frontend" },
+    ],
   },
 };

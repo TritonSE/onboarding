@@ -1,2 +1,2 @@
-export { Button } from "src/components/Button";
-export { TextField } from "src/components/TextField";
+export { Button } from "./Button";
+export { TextField } from "./TextField";
