@@ -19,8 +19,7 @@
 
 .secondary {
   background-color: var(--color-background);
-  border-color: var(--color-text-primary);
-  border-width: 0.125rem;
+  border: 0.125rem solid var(--color-text-primary);
   color: var(--color-text-primary);
 }
 

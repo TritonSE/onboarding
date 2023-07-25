@@ -24,6 +24,8 @@
 html,
 body {
   font: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
 }
 
 h1,

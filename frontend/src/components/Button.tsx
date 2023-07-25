@@ -1,16 +1,15 @@
 import React from "react";
 import styles from "src/styles/Button.module.css";
 
-type ButtonProps = React.ComponentProps<"button">;
-
-type OwnProps = {
+export interface ButtonProps extends React.ComponentProps<"button"> {
   label: string;
   kind?: "primary" | "secondary";
-};
+}
 
-type Props = OwnProps & ButtonProps;
-
-export function Button({ label, kind = "primary", ...props }: Props) {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { label, kind = "primary", ...props },
+  ref,
+) {
   let className = styles.button;
   switch (kind) {
     case "primary":
@@ -21,8 +20,8 @@ export function Button({ label, kind = "primary", ...props }: Props) {
       break;
   }
   return (
-    <button className={className} {...props}>
+    <button ref={ref} className={className} {...props}>
       {label}
     </button>
   );
-}
+});
