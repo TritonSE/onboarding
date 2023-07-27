@@ -67,7 +67,7 @@ module.exports = {
 
     "no-relative-import-paths/no-relative-import-paths": [
       "warn",
-      { allowSameFolder: true, rootDir: "frontend" },
+      { allowSameFolder: false, rootDir: "frontend" },
     ],
   },
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Home from "./pages/Home";
-import "./globals.css";
+import Home from "src/pages/Home";
+import "src/globals.css";
 
 export default function App() {
   return (

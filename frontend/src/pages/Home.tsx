@@ -1,12 +1,11 @@
 import React from "react";
-import { HeaderBar, TextField } from "src/components/";
+import { Page, TextField } from "src/components/";
 
 export default function Home() {
   return (
-    <>
-      <HeaderBar />
+    <Page>
       <h1>Home</h1>
       <TextField label="Asdf" />
-    </>
+    </Page>
   );
 }
