@@ -16,7 +16,7 @@
     "start": "nodemon src/server.ts",
     "format": "prettier --write .",
     "lint-fix": "(eslint --fix --cache --report-unused-disable-directives . || true) && prettier --write .",
-    "lint-check": "eslint --cache --report-unused-disable-directives . && prettier --check .",
+    "lint-check": "eslint --cache --report-unused-disable-directives --max-warnings 0 . && prettier --check .",
     "prepare": "cd .. && husky install .husky"
   },
   "keywords": [],
