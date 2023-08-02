@@ -26,12 +26,13 @@ export const getTask: RequestHandler = async (req, res, next) => {
 };
 
 export const createTask: RequestHandler = async (req, res, next) => {
-  const { title, description } = req.body;
+  const { title, description, isChecked } = req.body;
 
   try {
     const task = await TaskModel.create({
       title: title,
       description: description,
+      isChecked: isChecked,
       dateCreated: Date.now(),
     });
 
