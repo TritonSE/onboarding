@@ -6,6 +6,7 @@ import { RequestHandler } from "express";
 import TaskModel from "../models/task";
 import createHttpError from "http-errors";
 import { validationResult } from "express-validator";
+import validationErrorParser from "../util/validationErrorParser";
 
 export const getTask: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
@@ -32,17 +33,7 @@ export const createTask: RequestHandler = async (req, res, next) => {
   const { title, description, isChecked } = req.body;
 
   try {
-    if (!errors.isEmpty()) {
-      let errorString = "";
-
-      // parse through errors returned by the validator and append them to the error string
-      for (const error of errors.array()) {
-        errorString += error.msg + " ";
-      }
-
-      // trim removes the trailing space created in the for loop
-      throw createHttpError(400, errorString.trim());
-    }
+    validationErrorParser(errors);
 
     const task = await TaskModel.create({
       title: title,
