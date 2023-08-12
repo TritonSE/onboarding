@@ -50,8 +50,13 @@ module.exports = {
      * convenient to allow them when the code is still being implemented.
      *
      * Prefix variable names with an underscore to suppress the warning.
+     *
+     * We disable the standard ESLint version of this rule and use the
+     * TypeScript version instead. This handles things like function type
+     * declarations better.
      */
-    "no-unused-vars": [
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
       "warn",
       {
         argsIgnorePattern: "^_",
