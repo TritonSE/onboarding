@@ -10,7 +10,7 @@ interface Task {
   dateCreated: Date;
 }
 
-interface TaskFormProps {
+export interface TaskFormProps {
   mode: "create" | "edit";
   task?: Task;
   onPressSubmit: (task: Task) => void;

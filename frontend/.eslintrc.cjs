@@ -20,7 +20,7 @@ module.exports = {
     project: "./tsconfig.json",
     tsconfigRootDir: __dirname,
   },
-  ignorePatterns: [".eslintrc.cjs", "webpack.config.js"],
+  ignorePatterns: [".eslintrc.cjs", "webpack.config.js", "jest.config.cjs"],
   plugins: ["@typescript-eslint", "react", "no-relative-import-paths"],
   rules: {
     "default-case": "off",
