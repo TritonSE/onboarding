@@ -8,10 +8,35 @@ export interface Task {
   title: string;
   description?: string;
   isChecked: boolean;
+  dateCreated: Date;
+}
 
-  // data received will be in JSON, JSON does not have a date type so we use
-  // a string instead
+interface TaskJSON {
+  _id: string;
+  title: string;
+  description?: string;
+  isChecked: boolean;
   dateCreated: string;
+}
+
+/**
+ * Converts taks from "any"-typed JSON that only contains primitive types to our
+ * custom Task interface. This is used to change the date field from a string
+ * to a Date object.
+ *
+ * @param task the JSON representation of the task
+ * @returns the typed Task
+ */
+function parseTask(task: TaskJSON): Task {
+  return {
+    _id: task._id,
+    title: task.title,
+    description: task.description,
+    isChecked: task.isChecked,
+
+    // convert the string version of the date to a Date object
+    dateCreated: new Date(task.dateCreated),
+  };
 }
 
 /**
@@ -33,8 +58,9 @@ export async function createTask(task: CreateTaskRequest): Promise<Task> {
   // read more about CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
   // read more about proxying: https://create-react-app.dev/docs/proxying-api-requests-in-development/
   const response = await post("/api/task", task);
+  const json = await response.json();
 
-  return await response.json();
+  return parseTask(json);
 }
 
 export async function getAllTasks(): Promise<Task[]> {
