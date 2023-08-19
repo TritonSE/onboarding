@@ -2,17 +2,22 @@
  * Credit to justinyaodu https://github.com/TritonSE/TSE-Fulcrum/blob/main/frontend/src/api.ts
  */
 
-// a custom type defining the HTTP methods we are handling
-type Method = "get" | "post" | "put";
+/**
+ * A custom type defining which HTTP methods we will handle in this file
+ */
+type Method = "GET" | "POST" | "PUT";
 
 /**
- * A custom wrapper for the fetch request that abstracts extra fields away.
+ * A wrapper around the built-in `fetch()` function that abstracts away some of
+ * the low-level details so we can focus on the important parts of each request.
+ * See https://developer.mozilla.org/en-US/docs/Web/API/fetch for information
+ * about the Fetch API.
  *
- * @param method the HTTP method used to make the call
- * @param url the url the calls is being made to
- * @param body the body of the call if there is one
- * @param headers the header of the fetch call
- * @returns the response received from the fetch request
+ * @param method The HTTP method to use
+ * @param url The URL to request
+ * @param body The body of the request, or undefined if there is none
+ * @param headers The headers of the request
+ * @returns The Response object returned by `fetch()
  */
 async function fetchRequest(
   method: Method,
@@ -27,7 +32,6 @@ async function fetchRequest(
     newHeaders["Content-Type"] = "application/json";
   }
 
-  // call the fetch call
   const response = await fetch(url, {
     method,
     headers: newHeaders,
@@ -38,7 +42,8 @@ async function fetchRequest(
 }
 
 /**
- * Throws an error only if the response has not been resolved successfully.
+ * Throws an error if the given response's status code indicates an error
+ * occurred, else does nothing.
  *
  * @param response the response from the fetch call
  * @throws an error if one exists
@@ -63,15 +68,15 @@ async function assertOk(response: Response): Promise<void> {
 }
 
 /**
- * Used to abstract unnecessary fields for get requests.
+ * Sends a GET request to the provided URL.
  *
- * @param url the url the call is being made to
- * @param headers the headers used in the call
+ * @param url the URL the call is being made to
+ * @param headers the headers of the request (optional)
  * @returns the response from the fetch request
  */
 export async function get(url: string, headers: Record<string, string> = {}): Promise<Response> {
   // body is null for get requests
-  const response = await fetchRequest("get", url, null, headers);
+  const response = await fetchRequest("GET", url, null, headers);
 
   // checks that there are no errors in the response
   assertOk(response);
@@ -79,11 +84,11 @@ export async function get(url: string, headers: Record<string, string> = {}): Pr
 }
 
 /**
- * Used to abstract unnecessary fields for post requests.
+ * Sends a POST request to the provided URL
  *
- * @param url the url the call is being made to
+ * @param url the URL the call is being made to
  * @param body the body of the call
- * @param headers the headers used in the call
+ * @param headers the headers of the request (optional)
  * @returns the response from the fetch request
  */
 export async function post(
@@ -91,15 +96,15 @@ export async function post(
   body: unknown,
   headers: Record<string, string> = {},
 ): Promise<Response> {
-  const response = await fetchRequest("post", url, body, headers);
+  const response = await fetchRequest("POST", url, body, headers);
   assertOk(response);
   return response;
 }
 
 /**
- * Used to abstract unnecessary fields for put requests.
+ * Sends a PUT request to the provided URL.
  *
- * @param url the url the call is being made to
+ * @param url the URL the call is being made to
  * @param body the body of the call
  * @param headers the headers used in the call
  * @returns the response from the fetch request
@@ -109,7 +114,7 @@ export async function put(
   body: unknown,
   headers: Record<string, string> = {},
 ): Promise<Response> {
-  const response = await fetchRequest("put", url, body, headers);
+  const response = await fetchRequest("GET", url, body, headers);
   assertOk(response);
   return response;
 }
