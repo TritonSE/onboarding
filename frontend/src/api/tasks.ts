@@ -33,16 +33,14 @@ function parseTask(task: TaskJSON): Task {
     title: task.title,
     description: task.description,
     isChecked: task.isChecked,
-
-    // convert the string version of the date to a Date object
     dateCreated: new Date(task.dateCreated),
   };
 }
 
 /**
- * This interface is optional, it's being used to make the input of createTask
- * cleaner. It's being exported so when calls are made to the function it can
- * be used.
+ * The expected inputs when we want to create a new Task object. In the MVP, we only
+ * need to provide the title and optionally the description, but in the course of
+ * this tutorial you'll likely want to add more fields here.
  */
 export interface CreateTaskRequest {
   title: string;
@@ -58,7 +56,7 @@ export async function createTask(task: CreateTaskRequest): Promise<Task> {
   // read more about CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
   // read more about proxying: https://create-react-app.dev/docs/proxying-api-requests-in-development/
   const response = await post("/api/task", task);
-  const json = await response.json();
+  const json = (await response.json()) as TaskJSON;
 
   return parseTask(json);
 }
