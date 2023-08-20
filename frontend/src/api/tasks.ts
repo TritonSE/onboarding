@@ -48,13 +48,6 @@ export interface CreateTaskRequest {
 }
 
 export async function createTask(task: CreateTaskRequest): Promise<Task> {
-  // we can call "/api/task" due to the "proxy" field in package.json
-  // the proxy field is being used to circumvent CORS errors on the dev system
-  // CORS is a security feature meant to prevent malicious cross-origin
-  // data retrieval
-  //
-  // read more about CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-  // read more about proxying: https://create-react-app.dev/docs/proxying-api-requests-in-development/
   const response = await post("/api/task", task);
   const json = (await response.json()) as TaskJSON;
 
