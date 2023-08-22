@@ -45,8 +45,9 @@ async function fetchRequest(
  * Throws an error if the given response's status code indicates an error
  * occurred, else does nothing.
  *
- * @param response the response from the fetch call
- * @throws an error if one exists
+ * @param response A response returned by `fetch()` or `fetchRequest()`
+ * @throws An error if the response was not successful (200-299) or a redirect
+ * (300-399)
  */
 async function assertOk(response: Response): Promise<void> {
   if (response.ok) {
@@ -70,26 +71,24 @@ async function assertOk(response: Response): Promise<void> {
 /**
  * Sends a GET request to the provided URL.
  *
- * @param url the URL the call is being made to
- * @param headers the headers of the request (optional)
- * @returns the response from the fetch request
+ * @param url The URL to request
+ * @param headers The headers of the request (optional)
+ * @returns The Response object returned by `fetch()`
  */
 export async function get(url: string, headers: Record<string, string> = {}): Promise<Response> {
-  // body is null for get requests
-  const response = await fetchRequest("GET", url, null, headers);
-
-  // checks that there are no errors in the response
+  // GET requests do not have a body
+  const response = await fetchRequest("GET", url, undefined, headers);
   assertOk(response);
   return response;
 }
 
 /**
- * Sends a POST request to the provided URL
+ * Sends a POST request to the provided URL.
  *
- * @param url the URL the call is being made to
- * @param body the body of the call
- * @param headers the headers of the request (optional)
- * @returns the response from the fetch request
+ * @param url The URL to request
+ * @param body The body of the request, or undefined if there is none
+ * @param headers The headers of the request (optional)
+ * @returns The Response object returned by `fetch()`
  */
 export async function post(
   url: string,
@@ -104,10 +103,10 @@ export async function post(
 /**
  * Sends a PUT request to the provided URL.
  *
- * @param url the URL the call is being made to
- * @param body the body of the call
- * @param headers the headers used in the call
- * @returns the response from the fetch request
+ * @param url The URL to request
+ * @param body The body of the request, or undefined if there is none
+ * @param headers The headers of the request (optional)
+ * @returns The Response object returned by `fetch()`
  */
 export async function put(
   url: string,

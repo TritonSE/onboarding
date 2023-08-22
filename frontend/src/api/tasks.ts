@@ -1,7 +1,9 @@
 import { post } from "src/api/requests";
 
 /**
- * Initializes the shape for the data being retrieved from the backend.
+ * Defines the "shape" of a Task object (what fields are present and their types) for
+ * frontend components to use. This will be the return type of most functions in this
+ * file.
  */
 export interface Task {
   _id: string;
@@ -11,6 +13,15 @@ export interface Task {
   dateCreated: Date;
 }
 
+/**
+ * Defines the shape of JSON that we'll receive from the backend when we ask the API
+ * for a Task object. That is, when the backend sends us a JSON object representing a
+ * Task, we expect it to match these fields and types.
+ *
+ * The difference between this type and `Task` above is that `dateCreated` is a string
+ * instead of a Date object. This is because JSON doesn't support Dates, so we use a
+ * date-formatted string in requests and responses.
+ */
 interface TaskJSON {
   _id: string;
   title: string;
@@ -20,12 +31,11 @@ interface TaskJSON {
 }
 
 /**
- * Converts taks from "any"-typed JSON that only contains primitive types to our
- * custom Task interface. This is used to change the date field from a string
- * to a Date object.
+ * Converts a Task from JSON that only contains primitive types to our custom
+ * Task interface.
  *
- * @param task the JSON representation of the task
- * @returns the typed Task
+ * @param task The JSON representation of the task
+ * @returns The parsed Task object
  */
 function parseTask(task: TaskJSON): Task {
   return {
