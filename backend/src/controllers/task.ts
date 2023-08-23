@@ -5,6 +5,8 @@
 import { RequestHandler } from "express";
 import TaskModel from "../models/task";
 import createHttpError from "http-errors";
+import { validationResult } from "express-validator";
+import validationErrorParser from "../util/validationErrorParser";
 
 export const getTask: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
@@ -26,12 +28,17 @@ export const getTask: RequestHandler = async (req, res, next) => {
 };
 
 export const createTask: RequestHandler = async (req, res, next) => {
-  const { title, description } = req.body;
+  // fetch errors returned by the validator
+  const errors = validationResult(req);
+  const { title, description, isChecked } = req.body;
 
   try {
+    validationErrorParser(errors);
+
     const task = await TaskModel.create({
       title: title,
       description: description,
+      isChecked: isChecked,
       dateCreated: Date.now(),
     });
 
