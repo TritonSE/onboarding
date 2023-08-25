@@ -4,12 +4,7 @@ import { Page, TaskForm } from "src/components/";
 export default function Home() {
   return (
     <Page>
-      <TaskForm
-        mode="create"
-        onPressSubmit={(task) => {
-          alert(task.title);
-        }}
-      />
+      <TaskForm mode="create" />
     </Page>
   );
 }
