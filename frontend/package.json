@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:27017",
+  "proxy": "http://localhost:3001",
   "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

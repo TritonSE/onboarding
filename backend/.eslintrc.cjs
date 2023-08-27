@@ -1,21 +1,23 @@
-{
-  "env": {
-    "browser": true,
-    "es2021": true
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
   },
-  "extends": [
+  extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname,
   },
-  "plugins": ["@typescript-eslint", "react"],
-  "rules": {
+  ignorePatterns: [".eslintrc.cjs"],
+  plugins: ["@typescript-eslint", "react"],
+  rules: {
     "default-case": "off",
     "no-plusplus": "off",
     "no-continue": "off",
@@ -27,7 +29,7 @@
     "no-underscore-dangle": "off",
 
     // Some APIs use snake_case identifiers.
-    "camelcase": "off",
+    camelcase: "off",
 
     // Depending on the context, using bracket notation might be clearer.
     "dot-notation": "off",
@@ -47,15 +49,15 @@
     "no-unused-vars": [
       "warn",
       {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+      },
     ],
 
     // Not necessary for some APIs (consistency reasons)
     "import/prefer-default-export": "off",
 
     // Stylistic rules.
-    "lines-between-class-members": "off"
-  }
-}
+    "lines-between-class-members": "off",
+  },
+};
