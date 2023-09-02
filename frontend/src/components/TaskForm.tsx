@@ -68,7 +68,11 @@ export function TaskForm({ mode, task }: TaskFormProps) {
   const formTitle = mode === "create" ? "New task" : "Edit task";
 
   return (
-    <div className={styles.form}>
+    <form className={styles.form}>
+      {/* we could just use a `<div>` element because we don't need the special
+      functionality that browsers give to `<form>` elements, but using `<form>`
+      is better for accessibility because it's more accurate for this purpose--
+      we are making a form, so we should use `<form>` */}
       <span className={styles.formTitle}>{formTitle}</span>
       <div className={styles.formRow}>
         <TextField
@@ -84,8 +88,16 @@ export function TaskForm({ mode, task }: TaskFormProps) {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
-        <Button kind="primary" label="Save" disabled={isLoading} onClick={handleSubmit} />
+        {/* set `type="primary"` on the button so the browser doesn't try to
+        handle it specially (because it's inside a `<form>`) */}
+        <Button
+          kind="primary"
+          type="button"
+          label="Save"
+          disabled={isLoading}
+          onClick={handleSubmit}
+        />
       </div>
-    </div>
+    </form>
   );
 }

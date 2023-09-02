@@ -53,18 +53,54 @@ function mountComponent(props: TaskFormProps) {
   render(<TaskForm {...props} />);
 }
 
+/**
+ * The callback below runs after each test (see
+ * https://jestjs.io/docs/api#aftereachfn-timeout). Often you'll want to run
+ * `jest.clearAllMocks()` or `jest.resetAllMocks()`, which reset the state of
+ * all mock functions (https://jestjs.io/docs/jest-object#jestclearallmocks).
+ * In this case, we only want to "clear" because "reset" also removes any mock
+ * implementations, which we want to leave alone for this test suite.
+ */
 afterEach(() => {
-  // This callback runs after each test (see
-  // https://jestjs.io/docs/api#aftereachfn-timeout). Often you'll want to
-  // run `jest.clearAllMocks()` or `jest.resetAllMocks()`, which reset the state
-  // of all mock functions (see
-  // https://jestjs.io/docs/jest-object#jestclearallmocks). In this case, we
-  // only want to "clear" because "reset" also removes any mock implementations,
-  // which we want to leave alone for this test suite.
   jest.clearAllMocks();
 });
 
+/**
+ * A `describe` block helps to group tests together, but is not required. You
+ * can nest them--for example, we could have something like:
+ * ```js
+ * describe("BigComponent", () => {
+ *   describe("functionality 1", () => {
+ *     it("does something", () => {
+ *       // ...
+ *     })
+ *     // ...
+ *   });
+ *   describe("functionality 2", () => {
+ *     // ...
+ *   })
+ * })
+ * ```
+ * See https://jestjs.io/docs/api#describename-fn for more information.
+ */
 describe("TaskForm", () => {
+  /**
+   * The `it` function defines a single test. The first parameter is a string
+   * that names the test. You should follow the format below (starts with a
+   * present-tense verb) so it reads as "it renders create mode", where "it"
+   * refers to "TaskForm". The second parameter is a function that contains the
+   * code for the test.
+   *
+   * This first test simply renders the component, then checks that the "New
+   * task" title is present. These kinds of tests are easy to write but do not
+   * verify any actual behavior/logic, so be sure to write additional tests like
+   * the third and fourth ones in this file.
+   *
+   * `it` is actually an alias for the `test` function. We use `it` so it reads
+   * like a sentence.
+   *
+   * See https://jestjs.io/docs/api#testname-fn-timeout for more information.
+   */
   it("renders create mode", () => {
     mountComponent({ mode: "create" });
     expect(screen.queryByText("New task")).toBeInTheDocument();
