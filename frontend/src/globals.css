@@ -7,7 +7,7 @@
   --color-text-secondary: #bbc;
   --color-action-primary: var(--color-tse-gold);
   --color-action-secondary: #ad930b;
-  --color-accent: #89e1e1;
+  --color-accent: #7fd6d6;
   --color-error: #fc3030;
   --font-title: normal 500 2rem "Rubik", sans-serif;
   --font-heading: normal bold 1.5rem "Rubik", sans-serif;
@@ -19,6 +19,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+*:focus-visible {
+  outline: var(--color-accent) solid medium;
 }
 
 html,

@@ -1,5 +1,6 @@
 /**
- * Credit to justinyaodu https://github.com/TritonSE/TSE-Fulcrum/blob/main/frontend/src/api.ts
+ * Based on the TSE Fulcrum API client implementation by justinyaodu:
+ * https://github.com/TritonSE/TSE-Fulcrum/blob/main/frontend/src/api.ts
  */
 
 /**
@@ -116,4 +117,53 @@ export async function put(
   const response = await fetchRequest("GET", url, body, headers);
   assertOk(response);
   return response;
+}
+
+export type APIData<T> = { success: true; data: T };
+export type APIError = { success: false; error: string };
+/**
+ * Utility type for the result of an API request. API client functions should
+ * always return an object of this type (without throwing an exception if
+ * something goes wrong). This allows users of the functions to perform easier
+ * error checking without excessive try-catch statements, making use of
+ * TypeScript's type narrowing feature. Specifically, by checking whether the
+ * `success` field is true or false, you'll know whether you can access the
+ * `data` field with the actual API response or the `error` field with an error
+ * message.
+ *
+ * For example, assume we have some API function with the type definition
+ * `doSomeRequest: (parameters: SomeParameters) => Promise<APIResult<SomeData>>`.
+ * Then we could use it in a frontend component as follows:
+ * ```
+ * doSomeRequest(parameters).then((result: APIResult<SomeData>) => {
+ *   if (result.success) {
+ *     console.log(result.data); // do something with the data, which is of type SomeData
+ *   } else {
+ *     console.error(result.error); // do something to inform the user of the error
+ *   }
+ * })
+ * ```
+ *
+ * See `createTask` in `src/api/tasks` and its use in `src/components/TaskForm`
+ * for a more concrete example, and see
+ * https://www.typescriptlang.org/docs/handbook/2/narrowing.html for more info
+ * about type narrowing.
+ */
+export type APIResult<T> = APIData<T> | APIError;
+
+/**
+ * Helper function for API client functions to handle errors consistently.
+ * Recommended usage is in a `catch` block--see `createTask` in `src/api/tasks`
+ * for an example.
+ *
+ * @param error An error thrown by a lower-level API function
+ * @returns An `APIError` object with a message from the given error
+ */
+export function handleAPIError(error: unknown): APIError {
+  if (error instanceof Error) {
+    return { success: false, error: error.message };
+  } else if (typeof error === "string") {
+    return { success: false, error };
+  }
+  return { success: false, error: `Unknown error: ${String(error)}` };
 }

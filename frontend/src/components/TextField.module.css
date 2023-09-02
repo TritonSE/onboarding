@@ -9,6 +9,7 @@
 
 .input {
   width: 100%;
+  height: 2.25rem;
   margin-top: 0.25rem;
   padding: 0.5rem 0.75rem;
   background-color: var(--color-background);
