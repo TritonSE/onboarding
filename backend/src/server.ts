@@ -2,6 +2,7 @@
  * Initializes mongoose and express.
  */
 
+import "module-alias/register";
 import mongoose from "mongoose";
 import app from "src/app";
 import env from "src/util/validateEnv";
