@@ -40,7 +40,7 @@ export function TaskForm({ mode, task }: TaskFormProps) {
   const handleSubmit = () => {
     // first, do any validation that we can on the frontend
     setErrors({});
-    if (!title) {
+    if (title.length === 0) {
       setErrors({ title: true });
       return;
     }
