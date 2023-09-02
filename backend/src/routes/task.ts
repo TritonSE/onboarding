@@ -3,8 +3,8 @@
  */
 
 import express from "express";
-import * as TaskController from "../controllers/task";
-import * as TaskValidator from "../validators/task";
+import * as TaskController from "src/controllers/task";
+import * as TaskValidator from "src/validators/task";
 
 const router = express.Router();
 

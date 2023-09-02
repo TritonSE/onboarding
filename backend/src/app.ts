@@ -4,8 +4,8 @@
 
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-import taskRoutes from "./routes/task";
 import { isHttpError } from "http-errors";
+import taskRoutes from "src/routes/task";
 
 const app = express();
 
