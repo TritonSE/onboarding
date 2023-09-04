@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import Home from "src/pages/Home";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { About, Home } from "src/pages";
 import "src/globals.css";
 
 export default function App() {
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -18,8 +18,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </HelmetProvider>
   );
 }

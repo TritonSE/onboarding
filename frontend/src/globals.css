@@ -44,3 +44,12 @@ h6 {
 p {
   margin-top: 1em;
 }
+
+a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-text-secondary);
+}

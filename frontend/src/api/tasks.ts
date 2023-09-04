@@ -59,7 +59,7 @@ export interface CreateTaskRequest {
 
 /**
  * The implementation of this API client function is provided as part of the
- * MVP. You can use it as a basis for writing the other client functions.
+ * MVP. You can use it as a guide for writing the other client functions.
  */
 export async function createTask(task: CreateTaskRequest): Promise<APIResult<Task>> {
   try {
