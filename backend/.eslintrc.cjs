@@ -16,7 +16,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   ignorePatterns: [".eslintrc.cjs"],
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "no-relative-import-paths"],
   rules: {
     "default-case": "off",
     "no-plusplus": "off",
@@ -59,5 +59,10 @@ module.exports = {
 
     // Stylistic rules.
     "lines-between-class-members": "off",
+
+    "no-relative-import-paths/no-relative-import-paths": [
+      "warn",
+      { allowSameFolder: false, rootDir: "backend" },
+    ],
   },
 };

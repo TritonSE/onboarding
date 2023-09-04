@@ -3,10 +3,10 @@
  */
 
 import { RequestHandler } from "express";
-import TaskModel from "../models/task";
 import createHttpError from "http-errors";
 import { validationResult } from "express-validator";
-import validationErrorParser from "../util/validationErrorParser";
+import TaskModel from "src/models/task";
+import validationErrorParser from "src/util/validationErrorParser";
 
 export const getTask: RequestHandler = async (req, res, next) => {
   const { id } = req.params;

@@ -2,9 +2,10 @@
  * Initializes mongoose and express.
  */
 
-import app from "./app";
-import env from "./util/validateEnv";
+import "module-alias/register";
 import mongoose from "mongoose";
+import app from "src/app";
+import env from "src/util/validateEnv";
 
 const PORT = env.PORT;
 const MONGODB_URI = env.MONGODB_URI;
