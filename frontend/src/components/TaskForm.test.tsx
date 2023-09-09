@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import type { CreateTaskRequest, Task } from "src/api/tasks";
 import { TaskForm, type TaskFormProps } from "src/components/TaskForm";
@@ -116,7 +116,9 @@ describe("TaskForm", () => {
     expect(screen.queryByLabelText("Description")).toHaveValue("Very important");
   });
 
-  it("calls submit handler with edited fields", () => {
+  it("calls submit handler with edited fields", async () => {
+    // sometimes a test needs to be asynchronous, for example if we need to wait
+    // for component state updates
     mountComponent({
       mode: "edit",
       task: mockTask,
@@ -125,17 +127,33 @@ describe("TaskForm", () => {
     fireEvent.change(screen.getByLabelText("Description"), {
       target: { value: "Updated description" },
     });
-    fireEvent.click(screen.getByText("Save"));
+    const saveButton = screen.getByText("Save");
+    fireEvent.click(saveButton);
     expect(mockCreateTask).toHaveBeenCalledTimes(1);
     expect(mockCreateTask).toHaveBeenCalledWith({
       title: "Updated title",
       description: "Updated description",
     });
+    await waitFor(() => {
+      // If the test ends before all state updates and rerenders occur, we'll
+      // get a warning about updates not being wrapped in an `act(...)`
+      // function. We resolve it here by waiting for the save button to be
+      // re-enabled.
+      // `@testing-library/react` actually uses `act()` in its helper functions,
+      // like `fireEvent.click()`, so we'll only see that warning when there's
+      // something missing in our tests.
+      // More info: https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
+      expect(saveButton).toBeEnabled();
+    });
   });
 
-  it("catches invalid title", () => {
+  it("catches invalid title", async () => {
     mountComponent({ mode: "create" });
-    fireEvent.click(screen.getByText("Save"));
+    const saveButton = screen.getByText("Save");
+    fireEvent.click(saveButton);
     expect(mockCreateTask).not.toHaveBeenCalled();
+    await waitFor(() => {
+      expect(saveButton).toBeEnabled();
+    });
   });
 });
