@@ -1,0 +1,23 @@
+# based on https://github.com/marketplace/actions/run-jest
+name: Run Jest tests
+on:
+  pull_request:
+    branches: main
+  push:
+    branches: main
+jobs:
+  frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Run tests
+        working-directory: frontend
+        env:
+          # run all tests instead of using interactive CLI by setting CI environment variable
+          # https://create-react-app.dev/docs/running-tests/#continuous-integration
+          CI: true
+        run: |
+          npm ci
+          npm run test
