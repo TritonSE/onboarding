@@ -6,6 +6,7 @@ import styles from "src/components/TaskForm.module.css";
 export interface TaskFormProps {
   mode: "create" | "edit";
   task?: Task;
+  onSubmit?: (task: Task) => void;
 }
 
 /**
@@ -16,8 +17,9 @@ export interface TaskFormProps {
  * corresponding input component will show its error state if the field is true.
  * Look at where the `errors` object appears below for demonstration.
  *
- * In the MVP, the only possible error in this form is that the title is blank.
- * You'll add another field which will have more complex potential errors.
+ * In the MVP, the only possible error in this form is that the title is blank,
+ * so this is slightly overengineered. However, a more complex form would need
+ * a similar system.
  */
 interface TaskFormErrors {
   title?: boolean;
@@ -30,8 +32,10 @@ interface TaskFormErrors {
  * @param props.mode Controls how the form renders and submits
  * @param props.task Optional initial data to populate the form with (such as
  * when we're editing an existing task)
+ * @param props.onSubmit Optional callback to run after the user submits the
+ * form and the request succeeds
  */
-export function TaskForm({ mode, task }: TaskFormProps) {
+export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
   const [title, setTitle] = useState<string>(task?.title || "");
   const [description, setDescription] = useState<string>(task?.description || "");
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -50,6 +54,9 @@ export function TaskForm({ mode, task }: TaskFormProps) {
         // clear the form
         setTitle("");
         setDescription("");
+        // onSubmit may be undefined, in which case we can't call it--this is
+        // a neat way to only call it if it's NOT undefined
+        onSubmit && onSubmit(result.data);
       } else {
         // You should always clearly inform the user when something goes wrong.
         // In this case, we're just doing an `alert()` for brevity, but you'd
@@ -84,7 +91,7 @@ export function TaskForm({ mode, task }: TaskFormProps) {
         />
         <TextField
           className={`${styles.textField} ${styles.stretch}`}
-          label="Description"
+          label="Description (optional)"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />

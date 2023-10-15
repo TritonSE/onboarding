@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Page, TaskForm } from "src/components/";
+import { Page, TaskForm } from "src/components";
 
 export function Home() {
   return (
