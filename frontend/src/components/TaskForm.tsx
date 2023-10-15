@@ -82,8 +82,11 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
       we are making a form, so we should use `<form>` */}
       <span className={styles.formTitle}>{formTitle}</span>
       <div className={styles.formRow}>
+        {/* `data-testid` is used by React Testing Library--see the tests in
+        `TaskForm.test.tsx` */}
         <TextField
           className={styles.textField}
+          data-testid="task-title-input"
           label="Title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -91,6 +94,7 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
         />
         <TextField
           className={`${styles.textField} ${styles.stretch}`}
+          data-testid="task-description-input"
           label="Description (optional)"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
@@ -100,6 +104,7 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
         <Button
           kind="primary"
           type="button"
+          data-testid="task-save-button"
           label="Save"
           disabled={isLoading}
           onClick={handleSubmit}
