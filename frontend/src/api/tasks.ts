@@ -1,4 +1,4 @@
-import { type APIResult, handleAPIError, post } from "src/api/requests";
+import { type APIResult, get, handleAPIError, post } from "src/api/requests";
 
 /**
  * Defines the "shape" of a Task object (what fields are present and their types) for
@@ -58,8 +58,8 @@ export interface CreateTaskRequest {
 }
 
 /**
- * The implementation of this API client function is provided as part of the
- * MVP. You can use it as a guide for writing the other client functions.
+ * The implementations of these API client functions are provided as part of the
+ * MVP. You can use them as a guide for writing the other client functions.
  */
 export async function createTask(task: CreateTaskRequest): Promise<APIResult<Task>> {
   try {
@@ -71,6 +71,12 @@ export async function createTask(task: CreateTaskRequest): Promise<APIResult<Tas
   }
 }
 
-export async function getAllTasks(): Promise<APIResult<Task[]>> {
-  return { success: true, data: [] };
+export async function getTask(id: string): Promise<APIResult<Task>> {
+  try {
+    const response = await get(`/api/task/${id}`);
+    const json = (await response.json()) as TaskJSON;
+    return { success: true, data: parseTask(json) };
+  } catch (error) {
+    return handleAPIError(error);
+  }
 }
