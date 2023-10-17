@@ -4,9 +4,10 @@ import { body } from "express-validator";
 export const createTask = [
   body("title")
     // title must exist, if not this message will be displayed
-    // bail prevents the remainder of the validation chain for this field from being executed
     .exists()
     .withMessage("A title is required.")
+    // bail prevents the remainder of the validation chain for this field from being executed if
+    // there was an error
     .bail()
     .notEmpty()
     .withMessage("title cannot be empty.")

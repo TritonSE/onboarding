@@ -4,6 +4,10 @@ import "@testing-library/jest-dom";
 import type { CreateTaskRequest, Task } from "src/api/tasks";
 import { TaskForm, type TaskFormProps } from "src/components/TaskForm";
 
+const TITLE_INPUT_ID = "task-title-input";
+const DESCRIPTION_INPUT_ID = "task-description-input";
+const SAVE_BUTTON_ID = "task-save-button";
+
 /**
  * Some of our tests will verify that `TaskForm` calls the correct functions
  * when the user takes certain actions, like clicking the Save button. This mock
@@ -112,8 +116,8 @@ describe("TaskForm", () => {
       task: mockTask,
     });
     expect(screen.queryByText("Edit task")).toBeInTheDocument();
-    expect(screen.queryByLabelText("Title")).toHaveValue("My task");
-    expect(screen.queryByLabelText("Description")).toHaveValue("Very important");
+    expect(screen.queryByTestId(TITLE_INPUT_ID)).toHaveValue("My task");
+    expect(screen.queryByTestId(DESCRIPTION_INPUT_ID)).toHaveValue("Very important");
   });
 
   it("calls submit handler with edited fields", async () => {
@@ -123,11 +127,11 @@ describe("TaskForm", () => {
       mode: "edit",
       task: mockTask,
     });
-    fireEvent.change(screen.getByLabelText("Title"), { target: { value: "Updated title" } });
-    fireEvent.change(screen.getByLabelText("Description"), {
+    fireEvent.change(screen.getByTestId(TITLE_INPUT_ID), { target: { value: "Updated title" } });
+    fireEvent.change(screen.getByTestId(DESCRIPTION_INPUT_ID), {
       target: { value: "Updated description" },
     });
-    const saveButton = screen.getByText("Save");
+    const saveButton = screen.getByTestId(SAVE_BUTTON_ID);
     fireEvent.click(saveButton);
     expect(mockCreateTask).toHaveBeenCalledTimes(1);
     expect(mockCreateTask).toHaveBeenCalledWith({
@@ -149,7 +153,7 @@ describe("TaskForm", () => {
 
   it("catches invalid title", async () => {
     mountComponent({ mode: "create" });
-    const saveButton = screen.getByText("Save");
+    const saveButton = screen.getByTestId(SAVE_BUTTON_ID);
     fireEvent.click(saveButton);
     expect(mockCreateTask).not.toHaveBeenCalled();
     await waitFor(() => {
