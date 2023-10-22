@@ -164,4 +164,6 @@ Finally, if you find any errors/broken links or have any feedback, please reach 
 
 With all that out of the way, let's get started!
 
-**Next:** Part 0
+| Next                                               |
+| -------------------------------------------------- |
+| Part 0. Project setup and introduction to the code |
