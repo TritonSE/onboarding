@@ -5,10 +5,10 @@
 With everything installed, we now want to get a copy of this repository onto your computer so you can start working on it.
 
 1. Make sure you're signed into GitHub with the account that you'll use for TSE work. (You should have provided your username to us already.)
-2. Create a fork of the repo by clicking "Fork" in the upper right of the window.
-3. Give the new fork a name if you want to, then click "Create fork". This creates a copy of the repository under your own GitHub account, so you can make changes without altering the original.
+2. Create a fork of the repo by clicking Fork in the upper right of the window.
+3. Give the new fork a name if you want to, then click "Create fork." This creates a copy of the repository under your own GitHub account, so you can make changes without altering the original.
 4. Open your new fork in GitHub if it's not already open.
-5. Click the green "Code" dropdown in the upper right corner, then copy the URL under the SSH tab. (Make sure this is your fork, not the original repo!)
+5. Click the green Code dropdown in the upper right corner, then copy the URL under the SSH tab. (Make sure this is your fork, not the original repo!)
 6. Open your command prompt and navigate to the folder you'd like to store the project in.
 
    ```shell
@@ -21,7 +21,7 @@ With everything installed, we now want to get a copy of this repository onto you
    _In command examples, you should replace the text within `<angle brackets>` (including the brackets) with your own data._
    </details>
 
-7. Clone your forked repo.
+7. Clone your forked repo (paste the SSH URL that you copied earlier).
    ```shell
    git clone <repository URL>
    ```
@@ -46,8 +46,8 @@ We're almost ready to run the project for the first time! Before we can do that,
 
 An **environment variable** is a value stored in the shell environment which a program can access while it's running. Like variables in code, they have a name (such as "PORT") and a value (such as "3001"). They are often used to store information like:
 
-1. Values which change depending on whether the program is running in development or production mode (for example, 127.0.0.1 in the MONGODB_URI represents your own computer; when the backend is running on a real server, we might change that to a real IP address)
-2. Sensitive data that should not be stored in Git (such as secret API keys and passwords)
+- Values which change depending on whether the program is running in development or production mode (for example, 127.0.0.1 in the MONGODB_URI represents your own computer; when the backend is running on a real server, we might change that to a real IP address)
+- Sensitive data that should not be stored in Git (such as secret API keys and passwords)
 
 </em>
 </details>
@@ -78,9 +78,9 @@ Finally, we can run our application! Follow the steps below to run both the fron
    npm start
    ```
 
-If the frontend is running correctly, your browser should open and display the homepage of our todo app.
+If the frontend is running correctly, your browser should open and display the Home page of our todo app.
 
-If the backend is running correctly, you should see the following output in your command prompt:
+If the backend is running correctly, you should see output like the following in your command prompt:
 
 ```
 > backend@1.0.0 start
@@ -106,7 +106,7 @@ Lastly, we need to check that the frontend and backend can communicate with each
 
 1. Open a new command prompt instance and enter `mongosh`. You should see the MongoDB interactive shell, with a different prompt before your cursor.
 2. Enter `show dbs` to show a list of databases on your local computer. You should see one called `todoList`.
-3. Enter `use todoList` to switch to the todoList database. The shell prompt should now look like `todoList>`.
+3. Enter `use todoList` to switch to the `todoList` database. The shell prompt should now look like `todoList>`.
 4. Make sure your frontend and backend are still running.
 5. In your browser, type some text in the "New task" form's Title and Description fields, then click Save.
 6. Back in mongosh, enter `db.tasks.find()` to find all documents in the `tasks` collection. You should see an object with the title and description that you sent in the form.

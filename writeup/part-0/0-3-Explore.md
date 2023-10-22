@@ -6,22 +6,22 @@ Before we look more closely at the code, let's check out the Figma designs for t
 
 1. Open the [Onboarding Todo App Figma project](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App).
 2. If you're not signed in already, click "Log in" in the top right corner. Once you're signed in, you should see "View only" in the center of the top bar.
-3. Move the viewport: Scroll or middle-click and drag to pan around. Pinch (trackpad) or scroll while holding control to zoom in and out.
-4. Select an element: Click on an element in the main viewport or left sidebar to select it.
-   1. Generally, Figma only lets you select an element if its parent (such as a frame or group) is currently selected, which can be unwieldy for deeply nested elements. To select an element directly, right-click on it in the viewport and choose "Select layer," then choose the element you want to select.
-5. Navigator panel: The left sidebar has two sections: a page selector and a tree navigator.
+3. **Move the viewport:** Scroll or middle-click and drag to pan around. Pinch (trackpad) or scroll while holding `Ctrl` to zoom in and out.
+4. **Select an element:** Click on an element in the main viewport or left sidebar to select it.
+   1. Generally, Figma only lets you select an element if its parent (such as a frame or group) is currently selected, which can be unwieldy for deeply nested elements. To **select an element directly,** right-click on it in the viewport and choose "Select layer," then choose the element you want to select.
+5. **Navigator panel:** The left sidebar has two sections: a page selector and a tree navigator.
    1. You should start out on the "Part 1" page, which contains all the designs we need for Part 1. Click on "Part 2" to view the Part 2 designs.
    2. In the tree navigator, you can click on an element to highlight it in the main viewport or click on the triangle next to it to show/hide its children.
-6. Properties and Export panels: The right sidebar has three tabs at the top: Comment, Properties, and Export. We generally don't need to add comments as developers, so click on one of the other two tabs to see those panels.
+6. **Properties and Export panels:** The right sidebar has three tabs at the top: Comment, Properties, and Export. We generally don't need to add comments as developers, so click on one of the other two tabs to see those panels.
 
-   1. Properties: This panel shows style information from the currently selected element. If no element is selected, it shows a list of preset text and color styles which the designers have chosen.
+   1. **Properties:** This panel shows style information from the currently selected element. If no element is selected, it shows a list of preset text and color styles which the designers have chosen.
       <details>
       <summary><strong>❓ Hint: Style values</strong></summary>
 
       _As of writing, in view-only mode this list doesn't actually tell you anything about the style values (color, font size, etc.), so to see those, you can either look at the properties of individual elements or ask your designers to write out all the values somewhere. For this todo app, all colors and font styles are defined already in the frontend starter code (see below), so you'll just need to match them to things in the Figma designs._
       </details>
 
-   2. Export: This panel allows you to export any element as an image. We'll use this while developing the todo app, and it's likely that your future TSE projects will also have some custom icons or graphics which you'll want to export. Follow the steps below to export an element.
+   2. **Export:** This panel allows you to export any element as an image. We'll use this while developing the todo app, and it's likely that your future TSE projects will also have some custom icons or graphics which you'll want to export. Follow the steps below to export an element.
       1. Select the element.
       2. In the Export panel, click the + next to the element you want to export.
       3. Choose a file type (PNG, JPG, SVG, or PDF). SVG is the best in most cases because it can display at any size.
@@ -38,10 +38,15 @@ In a deployed project, the frontend and backend are often hosted on their own se
 ### Backend files
 
 - `package.json` **marks this folder as a Node package** and provides information so Node knows how to run the code. As a JSON file, it's formatted as a set of `"key": <value>` pairs. Most of the keys would only be relevant if we were publishing this as a library on NPM, so we'll just cover the ones that are important for us as developers. ([`package.json` documentation](https://docs.npmjs.com/cli/v10/configuring-npm/package-json))
+  <details>
+  <summary><strong>Contents of package.json</strong></summary>
+
   - `dependencies`: Set of **packages that we use** in our own code and the allowed version numbers. NPM refers to this when it installs dependencies (`npm install`), and it automatically updates it when we add another package (`npm install <package>`). See the [`package.json dependencies` docs](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies) for more info about the syntax.
   - `devDependencies`: Set of **packages that we use only during development** (such as testing frameworks and documentation generators) and the allowed version numbers. If you run `npm install --save-dev <package>`, it adds the package to `devDependencies`. There's not really a difference between `dependencies` and `devDependencies`, except if we publish the package to NPM and someone else uses it. So, we recommend just adding packages to `dependencies` unless there's a special reason to use `devDependencies`. See the [`package.json devDependencies` docs](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#devdependencies) for more info.
   - `scripts`: Set of **scripts we can run** with `npm run <script-name>`. We can write arbitrary commands for Node to run as part of each script. For example, the `lint-check` script is from our [linting repo](https://github.com/TritonSE/linters) and runs ESLint to scan our code for inconsistencies. Some special scripts run at preset times—for example, `prepare` runs automatically after every `npm install`, and `start` runs when we run `npm start`. See the [NPM scripts docs](https://docs.npmjs.com/cli/v10/using-npm/scripts) for more info.
   - `_moduleAliases`: Map of **module aliases** to the corresponding file paths. We use this so we can write simpler import paths (such as "src/foo" instead of "../../src/foo"). This is custom behavior provided by the [module-alias package](https://www.npmjs.com/package/module-alias).
+  </details>
+
 - `package-lock.json` **keeps track of the version of each dependency** which was last installed. This file is often quite large, and npm automatically updates it so there's generally no need to edit it manually. However, it's still very important to **include it in Git** because it ensures that different developers are using the same packages, thus avoiding conflicts.
 - `node_modules` **contains the code from all our dependencies.** This folder is also often very large, and you generally won't need to look at anything inside it. Since `package.json` and `package-lock.json` have all the information that NPM needs to keep track of dependencies, we usually have Git ignore the `node_modules` folder.
 - `src/server.ts` is the **entry point** of our backend code, meaning Node runs this file first. In this file, we connect Mongoose to our MongoDB instance and start up our Express middleware.
@@ -89,11 +94,15 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
   _The idea of components isn't unique to React, but it's definitely one of its defining characteristics. By writing different parts of our frontend into components, we make them more **modular**—easier to think about, reuse, and extend. Also, the "pages" of our application are technically React components too, but it's more helpful to separate them as a different type of abstraction._
   </details>
 
+  <details>
+  <summary><strong>Contents of src/components</strong></summary>
+
   - `Button` and `TextField` are the smallest and most reusable components. Because we'd expect these kinds of elements to be used in a lot of different ways, they are written generically, with lots of options. See the Figma file for illustrations of each component's variations.
   - `HeaderBar` is also a small component, but because we know it will only be used in one way (at the top of every page), we don't need to add any options.
   - `TaskForm` is the task creation form that you see on the Home page. It uses both `Button` and `TextField`. Note that this component contains both rendering logic (what gets displayed to the user) and some business logic (performing some operations when the user clicks Save). This is common in medium-to-large components—as the size of the component increases, so does the amount of logic it encapsulates.
   - The **CSS files** (ending in `.css`) in this folder provide styles to our components, including colors, fonts, borders, positioning, etc. We actually use CSS Modules (hence the `.module.css`; automatically enabled with CRA) so that the styles in each file only get applied to components that specifically import those styles.
   - The **test files** (ending in `.test.tsx`) in this folder define automated unit tests for each component, which are helpful for preventing regressions (unintentionally breaking things when we make changes). We use [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to run these tests. There is only one test file in the starter code, `TaskForm.test.tsx`, because that's the only component with enough complexity to merit testing. In TSE, we generally encourage automated testing of medium-complexity components and helper functions, including on the backend if worthwhile.
+  </details>
 
 - `src/api` contains our **frontend API client**—a set of helper functions that send HTTP requests to our backend routes, which we discussed above, and parse the responses. No frontend page or component should send any HTTP requests directly; instead, they should call these functions. We recommend gathering all the API request code in one place like this to make it easier to understand and maintain.
 - `src/globals.css` contains the application's **global styles.** This includes things like app colors and fonts, common text styles, and other styles that we want to apply to everything in the application. We can also override these styles with more specific CSS Modules stylesheets.
