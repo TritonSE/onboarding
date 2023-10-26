@@ -1,4 +1,4 @@
-# Part 0.
+# Part 0
 
 **Project setup and introduction to the code**
 
