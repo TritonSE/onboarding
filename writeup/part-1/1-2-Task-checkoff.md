@@ -51,14 +51,14 @@ Updates an existing Task by replacing all of its fields with the data from the r
 <details>
 <summary><strong>🤔 For new developers: POST and PUT</strong></summary>
 
-Note that we use `POST` requests to create Tasks and `PUT` requests to update them. This isn't strictly necessary (we could, say, use `POST` for everything), but it's a standard industry practice because it follows the original HTTP specification more closely. The main difference between the two methods is "[idempotence](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent)"—`PUT` actions are expected to be idempotent, while `POST` actions are not.
+_Note that we use `POST` requests to create Tasks and `PUT` requests to update them. This isn't strictly necessary (we could, say, use `POST` for everything), but it's a standard industry practice because it follows the original HTTP specification more closely. The main difference between the two methods is "[idempotence](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent)"—`PUT` actions are expected to be idempotent, while `POST` actions are not._
 
 </details>
 
 <details>
 <summary><strong>✅ Good practice: Limiting user-modifiable fields</strong></summary>
 
-Here we just replace the entire Task object with the provided data, even the `dateCreated` field. We do this for simplicity, but in a real project, it might be advisable to limit which fields can be modified by a user request.
+_Here we just replace the entire Task object with the provided data, even the `dateCreated` field. We do this for simplicity, but in a real project, it might be advisable to limit which fields can be modified by a user request._
 
 </details>
 
@@ -83,7 +83,9 @@ Here we just replace the entire Task object with the provided data, even the `da
    3. Otherwise, return a 200 response containing the updated Task.
 5. Test your implementation. Make sure your backend is running locally, then call the new route through Postman or run the following command with your own values filled in:
    ```shell
-   curl -X "POST" http://127.0.0.1:3001/api/task/<paste a Task ID from your database here> -H "Content-Type: application/json" -d '{\"_id\":\"<the same ID>\",\"title\":\"Your title\",\"description\":\"Your description\",\"isChecked\":false,\"dateCreated\":\"2023-10-01T00:00Z\"}'
+   curl -X "POST" http://127.0.0.1:3001/api/task/<paste a Task ID from your database here> \
+     -H "Content-Type: application/json" \
+     -d '{\"_id\":\"<the same ID>\",\"title\":\"Your title\",\"description\":\"Your description\",\"isChecked\":false,\"dateCreated\":\"2023-10-01T00:00Z\"}'
    ```
    You should see the Task updated with its new data when you list all Tasks in mongosh and when you view the frontend Home page.
 6. Copy the skeleton code below into `frontend/src/api/tasks.ts`:
@@ -131,21 +133,21 @@ Here we just replace the entire Task object with the provided data, even the `da
    <details>
    <summary><strong>🤔 For new developers: Spread syntax</strong></summary>
 
-   An easy way to do this is to use JavaScript's [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals). You can write something like `{ ...task, isChecked: !task.isChecked }`. This is preferable because it's concise and it creates a (shallow) copy of `task`; we shouldn't modify `task` or any other props directly because that might cause unintended side effects.
+   _An easy way to do this is to use JavaScript's [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals). You can write something like `{ ...task, isChecked: !task.isChecked }`. This is preferable because it's concise and it creates a (shallow) copy of `task`; we shouldn't modify `task` or any other props directly because that might cause unintended side effects._
    </details>
 
 3. When `updateTask` resolves, call `setTask` with the new task from the response and set `isLoading` back to false. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case).
    <details>
    <summary><strong>🤔 For new developers: await or async</strong></summary>
 
-   If you make `handleToggleCheck` an `async` function, you can use `await` syntax instead of `then()`. There's no real difference here, so it's up to preference. Just stay consistent and don't mix the two syntaxes together.
+   _If you make `handleToggleCheck` an `async` function, you can use `await` syntax instead of `then()`. There's no real difference here, so it's up to preference. Just stay consistent and don't mix the two syntaxes together._
    </details>
 
 4. Pass two props to the `CheckButton`: `onPress` and `disabled`. We want `handleToggleCheck` to be called when the `CheckButton` is pressed, and we want the `CheckButton` to be disabled when `isLoading` is true.
    <details>
    <summary><strong>✅ Good practice: Organize helper functions together</strong></summary>
 
-   We could write the `onPress` handler function directly inside the JSX instead of storing it in a named variable. However, we'd recommend only doing that for super simple, one-line functions. Otherwise, it's generally a good practice to organize nontrivial helper functions like `handleToggleCheck` separately from our rendering code, to make them easier to find.
+   _We could write the `onPress` handler function directly inside the JSX instead of storing it in a named variable. However, we'd recommend only doing that for super simple, one-line functions. Otherwise, it's generally a good practice to organize nontrivial helper functions like `handleToggleCheck` separately from our rendering code, to make them easier to find._
    </details>
 
 5. Test your changes by checking and unchecking some tasks on the Home page. Make sure that each `TaskItem` updates its text color correctly and that after clicking the `CheckButton`, you can't click it again until the `TaskItem` has updated. To be extra sure, you can verify that the value of `isChecked` changes in mongosh. Also make sure it works as expected when you shut down your local backend (to simulate network unavailability).

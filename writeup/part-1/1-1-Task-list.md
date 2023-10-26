@@ -102,7 +102,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
    ```shell
    curl http://127.0.0.1:3001/api/tasks
    ```
-   You should see a list of your Task objects in order from latest to earliest.
+   You should see a list of your Task objects in order from latest to earliest creation date.
 8. In `frontend/src/api/tasks.ts`, copy the skeleton code below to the bottom of the file:
    ```typescript
    export async function getAllTasks(): Promise<APIResult<Task[]>> {
