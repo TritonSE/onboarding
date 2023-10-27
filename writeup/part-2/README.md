@@ -14,11 +14,11 @@ You can find the designs for these features on the "Part 2" page in Figma. The w
 
 ## Table of contents
 
-- 2.0. Prepare for development
-- 2.1. Add User objects
-- 2.2. Implement the task detail page
-- 2.3. Implement task assignment
-- 2.4. Make a pull request
+- [2.0. Prepare for development](./2-0-Prepare.md)
+- [2.1. Add User objects](./2-1-Users.md)
+- [2.2. Implement the task detail page](./2-2-Task-detail.md)
+- [2.3. Implement task assignment](./2-3-Task-assignment.md)
+- [2.4. Make a pull request](./2-4-Pull-request.md)
 
 | Previous                                     | Next                           |
 | -------------------------------------------- | ------------------------------ |

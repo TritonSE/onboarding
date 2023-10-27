@@ -21,10 +21,10 @@ Note that we'll present the backend specification first, then the frontend, for 
 
 ## Table of contents
 
-- 1.0. Prepare for development
-- 1.1. Implement the task list
-- 1.2. Implement task checkoff
-- 1.3. Make a pull request
+- [1.0. Prepare for development](./1-0-Prepare.md)
+- [1.1. Implement the task list](./1-1-Task-list.md)
+- [1.2. Implement task checkoff](./1-2-Task-checkoff.md)
+- [1.3. Make a pull request](./1-3-Pull-request.md)
 
 | Previous                                                         | Next                                |
 | ---------------------------------------------------------------- | ----------------------------------- |
