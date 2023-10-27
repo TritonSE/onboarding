@@ -119,7 +119,8 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 
 ### Specification
 
-- Design:
+Design:
+
 - Use the provided `CheckButton` component and global font styles. You can leave the `CheckButton` with no functionality for now; we'll implement that in Part 1.2.
 - Since this component will be displayed as part of a `TaskList` (coming up next), it should receive a `Task` as a prop.
 
@@ -228,7 +229,8 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 
 ### Specification
 
-- Design:
+Design:
+
 - Use the `getAllTasks` helper function from earlier to retrieve the list of all tasks on initial render.
 - If there are no tasks, display a short message as shown in Figma. (This includes the case where an error prevents the request from succeeding.)
 
@@ -291,7 +293,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack.
 
 <details>
-<summary><strong>✅ Good practice: List element</strong></summary>
+<summary><strong>✅ Good practice: List element instead of generic div</strong></summary>
 
 _Since this component is a list of items, it would be better to use the actual unordered list and list item elements (`<ul>` and `<li>` respectively) instead of a bunch of nested `<div>`s. (Alternatively, we could use the ARIA `list` and `listitem` roles.) Doing so would help screen readers and other assistive software determine the purpose of these elements more easily. However, we would also have to override some default styling (such as removing the bullet points of each `<li>`), so we chose to avoid that in this guide for simplicity._
 

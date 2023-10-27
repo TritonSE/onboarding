@@ -82,7 +82,7 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
 - `src/App.tsx` is the **root of our React application** code, where we set up `react-router` with our frontend pages. Note that the "routes" in this file are different from our backend API routes—here, we map each page to its own URL for the purpose of client-side routing. In general, the only other code in `App.tsx` should be things that we want to make available to all parts of the application.
 - `src/pages` stores the **pages of our frontend.** We currently have two pages: Home and About. The Home page displays a form for creating new tasks, while the About page contains some simple text (mainly to demonstrate how to link to another page).
   <details>
-  <summary><strong>✅ Good practice: Pages and URLs</strong></summary>
+  <summary><strong>✅ Good practice: Unique page URLs</strong></summary>
 
   _Now that the industry has more advanced frontend technologies like React instead of raw HTML/CSS, the concept of a website "page" is a little more fluid than before. For instance, one React JavaScript file can dynamically render multiple different pages under the same URL. We still recommend mapping pages and URLs one-to-one for the purpose of keeping certain functionalities, like bookmarking pages._
   </details>

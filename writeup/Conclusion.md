@@ -14,6 +14,6 @@ Want to challenge yourself and explore further? In no particular order, here are
 - **Automated tests** [small size, easy difficulty]: Add more unit tests to properly cover `TaskForm` and `TaskItem`.
 - **Task search, sorting, and filters** [medium size, medium difficulty]: Add the ability to search, sort, and filter tasks (search title/description, sort by title/creation date/status, filter by status, etc.).
 - **Better user selection** [medium size, easy difficulty]: Replace the "Assignee ID" text field in the `TaskForm` with a dropdown menu that allows you to choose a user by name.
-- **CSV import/export** [medium size, medium difficulty]: Add the ability to import and export tasks in CSV format.
+- **CSV import/export** [medium size, medium difficulty]: Add the ability to upload and download tasks in CSV format.
 - **Task deletion** [small size, easy difficulty]: Add the ability to delete tasks from the frontend.
 - **Task due dates** [medium size, medium difficulty]: Add the ability to set a due date on each task and to sort tasks by due date.

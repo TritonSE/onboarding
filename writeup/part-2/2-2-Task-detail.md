@@ -1,10 +1,13 @@
 # 2.2. Implement the task detail page
 
+Next, we'll add a new frontend page that displays information about a particular task.
+
 ## New page: `TaskDetail` (`/task/:id`)
 
 ### Specifications
 
-- Design:
+Design:
+
 - Retrieve the task with the ID in the URL on page load.
 - Display the task's title, description, assignee, status, and creation date according to the Figma design.
   - We'll implement the user profile component in Part 2.3. For now, you can just display the assignee's ID as a string.
@@ -18,7 +21,7 @@
 1. Study the variations of the `TaskDetail` page in the Figma carefully.
 2. Create a new file `frontend/src/pages/TaskDetail.tsx`. You can copy code from `Home.tsx` or `About.tsx` to set up the basic page outline. Make sure the exported function component is named `TaskDetail`.
 3. In `pages/index.ts`, add another line to re-export `TaskDetail` (like `About` and `Home`).
-4. In `frontend/src/App.tsx`, add a new [`Route`](https://reactrouter.com/en/main/route/route) with path `"/task/:id"` and element `<TaskDetail />`.
+4. In `frontend/src/App.tsx`, add a new [`Route` component](https://reactrouter.com/en/main/route/route) with path `"/task/:id"` and element `<TaskDetail />`.
 5. With the frontend running locally, test that the new page is reachable by entering the following URL in your browser: `localhost:3000/task/<id>`, where <id> is the ID of any Task object in your local database.
 6. Within the `TaskDetail` component, add a state variable `task` which will store the Task object and add a `useEffect` hook which retrieves the task and puts it into that state variable.
    1. Use the [`useParams` hook](https://reactrouter.com/en/main/hooks/use-params) from React Router to get the task ID from the URL (this is called a [dynamic segment](https://reactrouter.com/en/main/route/route#dynamic-segments)). This ID should be the only dependency of the `useEffect` hook.
@@ -30,7 +33,8 @@
 
 ### Specification
 
-- Design:
+Design:
+
 - Allow the user to click on the title of a `TaskItem`, linking to the task detail page.
 - Highlight each `TaskItem` when the user's pointer is hovering over it.
 

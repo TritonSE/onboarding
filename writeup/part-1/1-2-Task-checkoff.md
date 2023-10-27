@@ -56,7 +56,7 @@ _Note that we use `POST` requests to create Tasks and `PUT` requests to update t
 </details>
 
 <details>
-<summary><strong>✅ Good practice: Limiting user-modifiable fields</strong></summary>
+<summary><strong>✅ Good practice: Limit user-modifiable fields</strong></summary>
 
 _Here we just replace the entire Task object with the provided data, even the `dateCreated` field. We do this for simplicity, but in a real project, it might be advisable to limit which fields can be modified by a user request._
 

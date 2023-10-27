@@ -1,10 +1,13 @@
 # 2.3. Implement task assignment
 
+Finally, we'll add the ability to assign users to tasks and see who is the assignee for a particular task.
+
 ## New component: `UserTag`
 
 ### Specification
 
-- Design:
+Design:
+
 - This component should receive an optional User object as a prop.
 - If the user is null or undefined, then display the "Not assigned" message as shown in Figma.
 - If there is no profile picture URL, then use the default icon provided in Figma.
@@ -31,7 +34,8 @@
 
 ### Specification
 
-- Design:
+Design:
+
 - `TaskItem` should render a `UserTag` to show who is assigned to the task.
 
 ### Walkthrough
@@ -46,7 +50,8 @@
 
 ### Specification
 
-- Design:
+Design:
+
 - The `TaskForm` should have another text field for the optional assignee ID.
 - In `"edit"` mode, the `TaskForm` should call `updateTask` instead of `createTask`. It does not need to reset itself after submitting in this mode.
 
@@ -59,7 +64,8 @@
 
 ### Specification
 
-- Design:
+Design:
+
 - When "Edit task" is clicked, display the `TaskForm` component in edit mode with the data from this task.
 - When the `TaskForm` is submitted, display the task information view again with the updated task data.
 

@@ -20,6 +20,6 @@ You can find the designs for these features on the "Part 2" page in Figma. The w
 - 2.3. Implement task assignment
 - 2.4. Make a pull request
 
-| Previous                       |
-| ------------------------------ |
-| Part 1. Minimum viable product |
+| Previous                       | Next       |
+| ------------------------------ | ---------- |
+| Part 1. Minimum viable product | Conclusion |
