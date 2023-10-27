@@ -42,6 +42,6 @@
    git branch -d part-1
    ```
 
-| Previous                     | Up     | Next                  |
-| ---------------------------- | ------ | --------------------- |
-| 1.2. Implement task checkoff | Part 1 | Part 2. More features |
+| Previous                                               | Up           | Next                                |
+| ------------------------------------------------------ | ------------ | ----------------------------------- |
+| [1.2. Implement task checkoff](./1-2-Task-checkoff.md) | [Part 1](./) | [Part 2. More features](../part-2/) |

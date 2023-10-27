@@ -54,6 +54,6 @@ Here are some other tools and extensions which you might find helpful. None are 
 - [GitLens VS Code extension](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Useful for checking who last edited any particular line of code; also provides some additional UI integration for Git, such as viewing the differences in a file between previous commits.
 - [React Developer Tools browser extension](https://react.dev/learn/react-developer-tools): Useful for analyzing your React frontend component structure, such as finding out what component is rendering a particular HTML element.
 
-| Previous     | Up     | Next                      |
-| ------------ | ------ | ------------------------- |
-| Introduction | Part 0 | Part 0.1. Set up accounts |
+| Previous                           | Up           | Next                                         |
+| ---------------------------------- | ------------ | -------------------------------------------- |
+| [Introduction](../Introduction.md) | [Part 0](./) | [Part 0.1. Set up accounts](./0-1-Set-up.md) |

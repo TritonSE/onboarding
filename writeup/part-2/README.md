@@ -2,7 +2,7 @@
 
 **More features**
 
-Estimated time: XX to XX hours
+Estimated time: 2 to 6 hours
 
 Now that we've implemented an MVP, it's time to start thinking about v2. For v2, we'd like to add these additional features:
 
@@ -20,6 +20,6 @@ You can find the designs for these features on the "Part 2" page in Figma. The w
 - 2.3. Implement task assignment
 - 2.4. Make a pull request
 
-| Previous                       | Next       |
-| ------------------------------ | ---------- |
-| Part 1. Minimum viable product | Conclusion |
+| Previous                                     | Next                           |
+| -------------------------------------------- | ------------------------------ |
+| [Part 1. Minimum viable product](../part-1/) | [Conclusion](../Conclusion.md) |

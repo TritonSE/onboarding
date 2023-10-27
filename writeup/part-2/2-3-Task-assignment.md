@@ -6,7 +6,7 @@ Finally, we'll add the ability to assign users to tasks and see who is the assig
 
 ### Specification
 
-Design:
+[Link to `UserTag` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=38-552&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - This component should receive an optional User object as a prop.
 - If the user is null or undefined, then display the "Not assigned" message as shown in Figma.
@@ -24,7 +24,7 @@ Design:
    <details>
    <summary><strong>❓ Hint: CORS errors</strong></summary>
 
-   _You might encounter a CORS (Cross-Origin Resource Sharing) permission error caused by the profile picture. This happens because browsers block requests for any resource that's not from the same origin (in our case, `localhost:3000`) by default for security reasons. You can ignore these errors and just use the example profile pictures that we provided (see Part 2.1)._
+   _You might encounter a CORS (Cross-Origin Resource Sharing) permission error caused by the profile picture. This happens because browsers block requests for any resource that's not from the same origin (in our case, `localhost:3000`) by default for security reasons. You can ignore these errors and just use the example profile pictures that we provided (see [Part 2.1](./2-1-Users.md))._
    </details>
 
 4. Add styles to the `UserTag` component. You should just need some layout styling, font styling for the name label, and a border-radius on the profile picture.
@@ -34,7 +34,7 @@ Design:
 
 ### Specification
 
-Design:
+[Link to updated `TaskItem` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=36-307&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - `TaskItem` should render a `UserTag` to show who is assigned to the task.
 
@@ -50,7 +50,7 @@ Design:
 
 ### Specification
 
-Design:
+[Link to updated `TaskForm` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=38-620&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - The `TaskForm` should have another text field for the optional assignee ID.
 - In `"edit"` mode, the `TaskForm` should call `updateTask` instead of `createTask`. It does not need to reset itself after submitting in this mode.
@@ -64,7 +64,7 @@ Design:
 
 ### Specification
 
-Design:
+[Link to updated `TaskDetail` page in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=38-575&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - When "Edit task" is clicked, display the `TaskForm` component in edit mode with the data from this task.
 - When the `TaskForm` is submitted, display the task information view again with the updated task data.
@@ -85,6 +85,6 @@ Design:
 
 Remember to add, commit, and push your changes!
 
-| Previous                            | Up     | Next                     |
-| ----------------------------------- | ------ | ------------------------ |
-| 2.2. Implement the task detail page | Part 2 | 2.4. Make a pull request |
+| Previous                                                    | Up           | Next                                              |
+| ----------------------------------------------------------- | ------------ | ------------------------------------------------- |
+| [2.2. Implement the task detail page](./2-2-Task-detail.md) | [Part 2](./) | [2.4. Make a pull request](./2-4-Pull-request.md) |

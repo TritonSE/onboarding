@@ -6,14 +6,14 @@ Next, we'll add a new frontend page that displays information about a particular
 
 ### Specifications
 
-Design:
+[Link to `TaskDetail` page in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=37-624&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - Retrieve the task with the ID in the URL on page load.
 - Display the task's title, description, assignee, status, and creation date according to the Figma design.
-  - We'll implement the user profile component in Part 2.3. For now, you can just display the assignee's ID as a string.
+  - We'll implement the user profile component in [Part 2.3](./2-3-Task-assignment.md). For now, you can just display the assignee's ID as a string.
   - If `isChecked` is true, status is "Done"; otherwise, status is "Not done".
   - If no task exists with the ID from the URL, just display the message as shown in the Figma.
-- For now, the "Edit task" button should do nothing. (We'll come back to it in Part 2.3.)
+- For now, the "Edit task" button should do nothing. (We'll come back to it in [Part 2.3](./2-3-Task-assignment.md).)
 - The page title should be "&lt;task title&gt; | TSE Todos".
 
 ### Walkthrough
@@ -33,7 +33,7 @@ Design:
 
 ### Specification
 
-Design:
+[Link to updated `TaskItem` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=36-307&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - Allow the user to click on the title of a `TaskItem`, linking to the task detail page.
 - Highlight each `TaskItem` when the user's pointer is hovering over it.
@@ -51,6 +51,6 @@ Design:
 
 Remember to add, commit, and push your changes!
 
-| Previous              | Up     | Next                           |
-| --------------------- | ------ | ------------------------------ |
-| 2.1. Add User objects | Part 2 | 2.3. Implement task assignment |
+| Previous                                | Up           | Next                                                       |
+| --------------------------------------- | ------------ | ---------------------------------------------------------- |
+| [2.1. Add User objects](./2-1-Users.md) | [Part 2](./) | [2.3. Implement task assignment](./2-3-Task-assignment.md) |

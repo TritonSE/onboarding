@@ -19,7 +19,7 @@ _A minimum viable product is a project version that only contains the features n
 
 </details>
 
-In TSE, your team's product manager and designers will plan out most of the project's features before development starts. Typically, they'll create a project proposal and other documents that you can refer to for information about how certain features should work, and a Figma file with the frontend design prototypes. We explain each feature of this todo list app in this guide, so there's no separate proposal or writeup, but you should familiarize yourself with our [todo app Figma designs](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App) in Part 0.
+In TSE, your team's product manager and designers will plan out most of the project's features before development starts. Typically, they'll create a project proposal and other documents that you can refer to for information about how certain features should work, and a Figma file with the frontend design prototypes. We explain each feature of this todo list app in this guide, so there's no separate proposal or writeup, but you should familiarize yourself with our [todo app Figma designs](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App) in [Part 0](./part-0/).
 
 ## Tools and technologies
 
@@ -106,7 +106,7 @@ _An application programming interface is the set of operations and ways to use t
 
 Websites are rendered (displayed) in a browser through a combination of HTML, CSS, and JavaScript. Each of the three plays a separate role: **HTML** specifies the **structure** of the UI (what elements are present and how they relate to each other), **CSS** adds **styles** (colors, fonts, sizes, borders, etc.) to those elements, and **JavaScript** adds **functionality** (what happens when the user clicks this button or that menu).
 
-However, it's tedious to write lots of individual HTML, CSS, and JS files. React makes development easier by **combining structure and functionality** under one unified JavaScript framework. See Part 0 for some illustration with the files in the starter code.
+However, it's tedious to write lots of individual HTML, CSS, and JS files. React makes development easier by **combining structure and functionality** under one unified JavaScript framework. See [Part 0](./part-0/) for some illustration with the files in the starter code.
 
 We used [Create React App](https://create-react-app.dev) (CRA) to initialize our React project in the `frontend` folder. It can be quite involved to get React, TypeScript, and all the other packages to work together, but CRA takes care of that for us. Some of the frontend code, therefore, was auto-generated.
 
@@ -148,7 +148,7 @@ Throughout this guide, we include pointers on Git usage to help you practice the
 <details>
 <summary><strong>About Figma</strong></summary>
 
-[Figma](https://www.figma.com) is an **online collaborative design prototyping software** used by many software companies. It's like Google Docs in that multiple people can work on the same file at the same time. It also has many tools for developers to help translate Figma designs into code, so feel free to play around with it to get some practice. We'll discuss Figma and our todo app designs more in Part 0.
+[Figma](https://www.figma.com) is an **online collaborative design prototyping software** used by many software companies. It's like Google Docs in that multiple people can work on the same file at the same time. It also has many tools for developers to help translate Figma designs into code, so feel free to play around with it to get some practice. We'll discuss Figma and our todo app designs more in [Part 0](./part-0/).
 
 </details>
 
@@ -164,6 +164,6 @@ Finally, if you find any errors/broken links or have any feedback, please reach 
 
 With all that out of the way, let's get started!
 
-| Next                                               |
-| -------------------------------------------------- |
-| Part 0. Project setup and introduction to the code |
+| Next                                                                   |
+| ---------------------------------------------------------------------- |
+| [Part 0. Project setup and introduction to the code](/writeup/part-0/) |

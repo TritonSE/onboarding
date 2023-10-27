@@ -2,7 +2,7 @@
 
 **Minimum viable product**
 
-Estimated time: XX to XX hours
+Estimated time: 2 to 4 hours
 
 In Part 1, we'll implement the MVP of this application with the following features:
 
@@ -26,6 +26,6 @@ Note that we'll present the backend specification first, then the frontend, for 
 - 1.2. Implement task checkoff
 - 1.3. Make a pull request
 
-| Previous                                           | Next                  |
-| -------------------------------------------------- | --------------------- |
-| Part 0. Project setup and introduction to the code | Part 2. More features |
+| Previous                                                         | Next                                |
+| ---------------------------------------------------------------- | ----------------------------------- |
+| [Part 0. Project setup and introduction to the code](../part-0/) | [Part 2. More features](../part-2/) |

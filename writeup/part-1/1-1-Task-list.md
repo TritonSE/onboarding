@@ -119,9 +119,9 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 
 ### Specification
 
-Design:
+[Link to `TaskItem` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=18-209&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
-- Use the provided `CheckButton` component and global font styles. You can leave the `CheckButton` with no functionality for now; we'll implement that in Part 1.2.
+- Use the provided `CheckButton` component and global font styles. You can leave the `CheckButton` with no functionality for now; we'll implement that in [Part 1.2](./1-2-Task-checkoff.md).
 - Since this component will be displayed as part of a `TaskList` (coming up next), it should receive a `Task` as a prop.
 
 ### Walkthrough
@@ -162,7 +162,7 @@ Design:
    This allows us to import `TaskItem` from `"src/components"` together with other components, instead of individually specifying `"src/components/TaskItem"`.
 5. First, we'll complete the structure of this component. It's mostly done already in the skeleton code (using divs and spans), but we need to display the data from the task object.
    1. Fill in the placeholders to render `task.title` and `task.description`. Refer to `components/Button.tsx` for an example of how to render a string (the `label` variable in that case). Note that we use [JavaScript shortcutting to conditionally render](https://react.dev/learn/conditional-rendering#logical-and-operator-) the description.
-   2. Fill in the placeholder to render a `CheckButton` component. Refer to `components/TaskForm.tsx` for an example of how to use other custom components (`TextField` and `Button` in that case). For now, just pass in the prop `checked={task.isChecked}`—the button won't do anything until Part 1.2.
+   2. Fill in the placeholder to render a `CheckButton` component. Refer to `components/TaskForm.tsx` for an example of how to use other custom components (`TextField` and `Button` in that case). For now, just pass in the prop `checked={task.isChecked}`—the button won't do anything until [Part 1.2](./1-2-Task-checkoff.md).
 6. Render a `TaskItem` on the Home page for testing purposes. We'll pass in a fake `Task` so we can see what the component looks like. In `frontend/src/pages/Home.tsx`, copy the following code under the line `<TaskForm mode="create" />`.
    ```tsx
    <TaskItem
@@ -229,7 +229,7 @@ Design:
 
 ### Specification
 
-Design:
+[Link to `TaskList` component in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=19-358&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
 - Use the `getAllTasks` helper function from earlier to retrieve the list of all tasks on initial render.
 - If there are no tasks, display a short message as shown in Figma. (This includes the case where an error prevents the request from succeeding.)
@@ -313,6 +313,6 @@ Once you have all of the above working correctly, follow the steps below to save
 
 We'll follow this commit-and-push process every time we make changes. You can commit more often than you push—we suggest committing every time your code reaches a good working state (with descriptive commit messages!), and pushing when you're done for the day.
 
-| Previous                     | Up     | Next                         |
-| ---------------------------- | ------ | ---------------------------- |
-| 1.0. Prepare for development | Part 1 | 1.2. Implement task checkoff |
+| Previous                                         | Up           | Next                                                   |
+| ------------------------------------------------ | ------------ | ------------------------------------------------------ |
+| [1.0. Prepare for development](./1-0-Prepare.md) | [Part 1](./) | [1.2. Implement task checkoff](./1-2-Task-checkoff.md) |

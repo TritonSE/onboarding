@@ -154,8 +154,8 @@ _Here we just replace the entire Task object with the provided data, even the `d
 
 ## Commit to Git
 
-Follow the same process as in Part 1.1: stage your changes using `git add`, commit them using `git commit` with a descriptive message, and push them using `git push`.
+Follow the same process as in [Part 1.1](./1-1-Task-list.md): stage your changes using `git add`, commit them using `git commit` with a descriptive message, and push them using `git push`.
 
-| Previous                     | Up     | Next                     |
-| ---------------------------- | ------ | ------------------------ |
-| 1.1. Implement the task list | Part 1 | 1.3. Make a pull request |
+| Previous                                           | Up           | Next                                              |
+| -------------------------------------------------- | ------------ | ------------------------------------------------- |
+| [1.1. Implement the task list](./1-1-Task-list.md) | [Part 1](./) | [1.3. Make a pull request](./1-3-Pull-request.md) |

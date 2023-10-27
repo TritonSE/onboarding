@@ -61,7 +61,7 @@ _`.env` files are a standard way to provide environment variables to a program. 
 
 Finally, we can run our application! Follow the steps below to run both the frontend and backend. If you'd like to know more about some of the commands, see the next section. If anything fails and you can't figure out why, ping us in the **#onboarding** Slack channel.
 
-1. Make sure MongoDB is running on your computer (see Part 0.0). You can leave it running after you're done working, or stop it and restart it when you come back.
+1. Make sure MongoDB is running on your computer (see [Part 0.0](./0-0-Install.md)). You can leave it running after you're done working, or stop it and restart it when you come back.
 2. Navigate to the backend folder and install packages.
    ```shell
    cd backend
@@ -114,6 +114,6 @@ Lastly, we need to check that the frontend and backend can communicate with each
 8. In mongosh, enter `db.tasks.find()` again and check that all the valid tasks (those with nonempty titles) were saved.
 9. To close mongosh, enter `quit()`.
 
-| Previous             | Up     | Next                              |
-| -------------------- | ------ | --------------------------------- |
-| 0.1. Set up accounts | Part 0 | 0.3. Explore the designs and code |
+| Previous                                | Up           | Next                                                  |
+| --------------------------------------- | ------------ | ----------------------------------------------------- |
+| [0.1. Set up accounts](./0-1-Set-up.md) | [Part 0](./) | [0.3. Explore the designs and code](./0-3-Explore.md) |

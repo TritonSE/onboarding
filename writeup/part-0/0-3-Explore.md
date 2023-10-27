@@ -37,7 +37,7 @@ In a deployed project, the frontend and backend are often hosted on their own se
 
 ### Backend files
 
-- `package.json` **marks this folder as a Node package** and provides information so Node knows how to run the code. As a JSON file, it's formatted as a set of `"key": <value>` pairs. Most of the keys would only be relevant if we were publishing this as a library on NPM, so we'll just cover the ones that are important for us as developers. ([`package.json` documentation](https://docs.npmjs.com/cli/v10/configuring-npm/package-json))
+- [`package.json`](/backend/package.json) **marks this folder as a Node package** and provides information so Node knows how to run the code. As a JSON file, it's formatted as a set of `"key": <value>` pairs. Most of the keys would only be relevant if we were publishing this as a library on NPM, so we'll just cover the ones that are important for us as developers. ([`package.json` documentation](https://docs.npmjs.com/cli/v10/configuring-npm/package-json))
   <details>
   <summary><strong>Contents of package.json</strong></summary>
 
@@ -47,14 +47,14 @@ In a deployed project, the frontend and backend are often hosted on their own se
   - `_moduleAliases`: Map of **module aliases** to the corresponding file paths. We use this so we can write simpler import paths (such as "src/foo" instead of "../../src/foo"). This is custom behavior provided by the [module-alias package](https://www.npmjs.com/package/module-alias).
   </details>
 
-- `package-lock.json` **keeps track of the version of each dependency** which was last installed. This file is often quite large, and npm automatically updates it so there's generally no need to edit it manually. However, it's still very important to **include it in Git** because it ensures that different developers are using the same packages, thus avoiding conflicts.
+- [`package-lock.json`](/backend/package-lock.json) **keeps track of the version of each dependency** which was last installed. This file is often quite large, and npm automatically updates it so there's generally no need to edit it manually. However, it's still very important to **include it in Git** because it ensures that different developers are using the same packages, thus avoiding conflicts.
 - `node_modules` **contains the code from all our dependencies.** This folder is also often very large, and you generally won't need to look at anything inside it. Since `package.json` and `package-lock.json` have all the information that NPM needs to keep track of dependencies, we usually have Git ignore the `node_modules` folder.
-- `src/server.ts` is the **entry point** of our backend code, meaning Node runs this file first. In this file, we connect Mongoose to our MongoDB instance and start up our Express middleware.
-- `src/app.ts` **configures Express** to call our request handling code and sets up a generic error handler.
-- `src/models` stores the **Mongoose schemata** (plural of schema) that we use in our database. In general, a **schema** defines the expected "shape" of an object, including its field names and their data types. The starter code only has one type of object, a Task, whose schema you can find in `src/models/task.ts`.
-- `src/routes` contains our **Express route definitions.** Each **route** is a specific path where the frontend can send an HTTP request to trigger the corresponding handler.
-- `src/validators` contains our server-side **validation logic.** These validators check each request to ensure that its data have the correct format before any other route handling logic runs. If the format is correct, then the data get passed along to the route handler; if not, then it redirects to an error handler.
-- `src/controllers` contains the **request handler** (a.k.a. route handler) code. This is where the real business logic happens on the backend.
+- [`src/server.ts`](/backend/src/server.ts) is the **entry point** of our backend code, meaning Node runs this file first. In this file, we connect Mongoose to our MongoDB instance and start up our Express middleware.
+- [`src/app.ts`](/backend/src/app.ts) **configures Express** to call our request handling code and sets up a generic error handler.
+- [`src/models`](/backend/src/models/) stores the **Mongoose schemata** (plural of schema) that we use in our database. In general, a **schema** defines the expected "shape" of an object, including its field names and their data types. The starter code only has one type of object, a Task, whose schema you can find in `src/models/task.ts`.
+- [`src/routes`](/backend/src/routes/) contains our **Express route definitions.** Each **route** is a specific path where the frontend can send an HTTP request to trigger the corresponding handler.
+- [`src/validators`](/backend/src/validators/) contains our server-side **validation logic.** These validators check each request to ensure that its data have the correct format before any other route handling logic runs. If the format is correct, then the data get passed along to the route handler; if not, then it redirects to an error handler.
+- [`src/controllers`](/backend/src/controllers/) contains the **request handler** (a.k.a. route handler) code. This is where the real business logic happens on the backend.
 
 <details>
 <summary><strong>🤔 For new developers: How Express runs this code</strong></summary>
@@ -76,18 +76,18 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
 
 ### Frontend files
 
-- `package.json`, like the one in the backend folder, **denotes a Node package.** Similarly, we also have a `package-lock.json` file and a `node_modules` folder.
-- `public/index.html` contains the actual HTML document **where React injects all of its generated HTML** in the browser. Since we write all our pages and components in React, this is the only HTML file in the entire project. The file itself was generated by CRA, and we added some extra code to download the Rubik font from Google Fonts and tell the browser where the site favicon is located. Most of the other files in the public folder are related to the favicon.
-- `src/index.tsx` is our **frontend's entry point.** It tells React where to inject our content in `index.html` and renders the `App` component from `src/App.tsx`.
-- `src/App.tsx` is the **root of our React application** code, where we set up `react-router` with our frontend pages. Note that the "routes" in this file are different from our backend API routes—here, we map each page to its own URL for the purpose of client-side routing. In general, the only other code in `App.tsx` should be things that we want to make available to all parts of the application.
-- `src/pages` stores the **pages of our frontend.** We currently have two pages: Home and About. The Home page displays a form for creating new tasks, while the About page contains some simple text (mainly to demonstrate how to link to another page).
+- [`package.json`](/frontend/package.json), like the one in the backend folder, **denotes a Node package.** Similarly, we also have a `package-lock.json` file and a `node_modules` folder.
+- [`public/index.html`](/frontend/public/index.html) contains the actual HTML document **where React injects all of its generated HTML** in the browser. Since we write all our pages and components in React, this is the only HTML file in the entire project. The file itself was generated by CRA, and we added some extra code to download the Rubik font from Google Fonts and tell the browser where the site favicon is located. Most of the other files in the public folder are related to the favicon.
+- [`src/index.tsx`](/frontend/src/index.tsx) is our **frontend's entry point.** It tells React where to inject our content in `index.html` and renders the `App` component from `src/App.tsx`.
+- [`src/App.tsx`](/frontend/src/App.tsx) is the **root of our React application** code, where we set up `react-router` with our frontend pages. Note that the "routes" in this file are different from our backend API routes—here, we map each page to its own URL for the purpose of client-side routing. In general, the only other code in `App.tsx` should be things that we want to make available to all parts of the application.
+- [`src/pages`](/frontend/src/pages/) stores the **pages of our frontend.** We currently have two pages: Home and About. The Home page displays a form for creating new tasks, while the About page contains some simple text (mainly to demonstrate how to link to another page).
   <details>
   <summary><strong>✅ Good practice: Unique page URLs</strong></summary>
 
   _Now that the industry has more advanced frontend technologies like React instead of raw HTML/CSS, the concept of a website "page" is a little more fluid than before. For instance, one React JavaScript file can dynamically render multiple different pages under the same URL. We still recommend mapping pages and URLs one-to-one for the purpose of keeping certain functionalities, like bookmarking pages._
   </details>
 
-- `src/components` contains code for our **React components.** Each **component** is a reusable element of the frontend, such as a button, popup, or search bar. We write our components in [JSX](https://react.dev/learn/writing-markup-with-jsx), which is an extended, React-specific version of JavaScript/TypeScript that allows us to write HTML-like code directly in our JS/TS files.
+- [`src/components`](/frontend/src/components/) contains code for our **React components.** Each **component** is a reusable element of the frontend, such as a button, popup, or search bar. We write our components in [JSX](https://react.dev/learn/writing-markup-with-jsx), which is an extended, React-specific version of JavaScript/TypeScript that allows us to write HTML-like code directly in our JS/TS files.
   <details>
   <summary><strong>🤔 For new developers: Components and modularity</strong></summary>
 
@@ -104,11 +104,11 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
   - The **test files** (ending in `.test.tsx`) in this folder define automated unit tests for each component, which are helpful for preventing regressions (unintentionally breaking things when we make changes). We use [Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) to run these tests. There is only one test file in the starter code, `TaskForm.test.tsx`, because that's the only component with enough complexity to merit testing. In TSE, we generally encourage automated testing of medium-complexity components and helper functions, including on the backend if worthwhile.
   </details>
 
-- `src/api` contains our **frontend API client**—a set of helper functions that send HTTP requests to our backend routes, which we discussed above, and parse the responses. No frontend page or component should send any HTTP requests directly; instead, they should call these functions. We recommend gathering all the API request code in one place like this to make it easier to understand and maintain.
-- `src/globals.css` contains the application's **global styles.** This includes things like app colors and fonts, common text styles, and other styles that we want to apply to everything in the application. We can also override these styles with more specific CSS Modules stylesheets.
+- [`src/api`](/frontend/src/api/) contains our **frontend API client**—a set of helper functions that send HTTP requests to our backend routes, which we discussed above, and parse the responses. No frontend page or component should send any HTTP requests directly; instead, they should call these functions. We recommend gathering all the API request code in one place like this to make it easier to understand and maintain.
+- [`src/globals.css`](/frontend/src/globals.css) contains the application's **global styles.** This includes things like app colors and fonts, common text styles, and other styles that we want to apply to everything in the application. We can also override these styles with more specific CSS Modules stylesheets.
 
 With that massive exposition dump over, take a deep breath. You made it, now let's start coding!
 
-| Previous                      | Up     | Next                           |
-| ----------------------------- | ------ | ------------------------------ |
-| 0.2. Fork and run the project | Part 0 | Part 1. Minimum viable product |
+| Previous                                       | Up           | Next                                         |
+| ---------------------------------------------- | ------------ | -------------------------------------------- |
+| [0.2. Fork and run the project](./0-2-Fork.md) | [Part 0](./) | [Part 1. Minimum viable product](../part-1/) |

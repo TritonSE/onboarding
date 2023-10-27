@@ -157,6 +157,6 @@ _If we did want to validate the `assignee` field, we would have to update `backe
 
 Remember to add, commit, and push your changes!
 
-| Previous                     | Up     | Next                                |
-| ---------------------------- | ------ | ----------------------------------- |
-| 2.0. Prepare for development | Part 2 | 2.2. Implement the task detail page |
+| Previous                                         | Up           | Next                                                        |
+| ------------------------------------------------ | ------------ | ----------------------------------------------------------- |
+| [2.0. Prepare for development](./2-0-Prepare.md) | [Part 2](./) | [2.2. Implement the task detail page](./2-2-Task-detail.md) |

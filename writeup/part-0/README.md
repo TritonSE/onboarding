@@ -2,7 +2,7 @@
 
 **Project setup and introduction to the code**
 
-Estimated time: XX to XX hours
+Estimated time: 1 to 2 hours
 
 ## Table of contents
 
@@ -11,6 +11,6 @@ Estimated time: XX to XX hours
 - 0.2. Fork and run the project
 - 0.3. Explore the designs and code
 
-| Previous     | Next                           |
-| ------------ | ------------------------------ |
-| Introduction | Part 1. Minimum viable product |
+| Previous                           | Next                                         |
+| ---------------------------------- | -------------------------------------------- |
+| [Introduction](../Introduction.md) | [Part 1. Minimum viable product](../part-1/) |
