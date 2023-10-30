@@ -109,6 +109,6 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
 
 With that massive exposition dump over, take a deep breath. You made it, now let's start coding!
 
-| Previous                                       | Up           | Next                                         |
-| ---------------------------------------------- | ------------ | -------------------------------------------- |
-| [0.2. Fork and run the project](./0-2-Fork.md) | [Part 0](./) | [Part 1. Minimum viable product](../part-1/) |
+| Previous                                         | Up           | Next                                         |
+| ------------------------------------------------ | ------------ | -------------------------------------------- |
+| [0.2. Clone and run the project](./0-2-Clone.md) | [Part 0](./) | [Part 1. Minimum viable product](../part-1/) |

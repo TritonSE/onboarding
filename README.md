@@ -15,7 +15,7 @@ Please begin by reading the introduction, linked in the table of contents below.
 - [Part 0. Project setup and introduction to the code](/writeup/part-0/)
   - [0.0. Install software](/writeup/part-0/0-0-Install.md)
   - [0.1. Set up accounts](/writeup/part-0/0-1-Set-up.md)
-  - [0.2. Fork and run the project](/writeup/part-0/0-2-Fork.md)
+  - [0.2. Clone and run the project](/writeup/part-0/0-2-Clone.md)
   - [0.3. Explore the designs and code](/writeup/part-0/0-3-Explore.md)
 - [Part 1. Minimum viable product](/writeup/part-1/)
   - [1.0. Prepare for development](/writeup/part-1/1-0-Prepare.md)

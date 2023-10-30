@@ -1,14 +1,17 @@
-# 0.2. Fork and run the project
+# 0.2. Clone and run the project
 
-## Fork this repository
+## Create a new repository from this template
 
-With everything installed, we now want to get a copy of this repository onto your computer so you can start working on it.
+With everything installed, we now want to get a copy of the project onto your computer so you can start working on it. This repository is a "[template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#about-repository-templates)," a GitHub feature that allows you to duplicate all the files into your own new repo.
 
 1. Make sure you're signed into GitHub with the account that you'll use for TSE work. (You should have provided your username to us already.)
-2. Create a fork of the repo by clicking Fork in the upper right of the window.
-3. Give the new fork a name if you want to, then click "Create fork." This creates a copy of the repository under your own GitHub account, so you can make changes without altering the original.
-4. Open your new fork in GitHub if it's not already open.
+2. On the [main page of this repo](https://github.com/TritonSE/onboarding), click the green "Use this template" button and select "Create a new repository."
+   <img src="../images/create-from-template-1.png">
+3. Give the new repo a name if you want to (such as "tse-onboarding"), and make sure it will be created under your personal account. You can set it to public or private; other options can be left as the default. Then click "Create repository from template."
+   <img src="../images/create-from-template-2.png">
+4. Open your new repo in GitHub if it's not already open.
 5. Click the green Code dropdown in the upper right corner, then copy the URL under the SSH tab. (Make sure this is your fork, not the original repo!)
+   <img src="../images/copy-repo-url.png">
 6. Open your command prompt and navigate to the folder you'd like to store the project in.
 
    ```shell

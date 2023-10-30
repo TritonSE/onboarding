@@ -8,7 +8,7 @@ Estimated time: 1 to 2 hours
 
 - [0.0. Install software](./0-0-Install.md)
 - [0.1. Set up accounts](./0-1-Set-up.md)
-- [0.2. Fork and run the project](./0-2-Fork.md)
+- [0.2. Clone and run the project](./0-2-Clone.md)
 - [0.3. Explore the designs and code](./0-3-Explore.md)
 
 | Previous                           | Next                                         |

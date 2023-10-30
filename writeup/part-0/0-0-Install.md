@@ -23,12 +23,14 @@ Follow the steps below to install and configure the Prettier extension for VS Co
 
 1. Navigate to the Extensions tab in the left sidebar.
 2. Enter "Prettier" in the search bar and select the extension published by prettier.io.
+   <img src="../images/install-prettier.png">
 3. Click Install.
 4. Now we have Prettier added to VS Code, but we still must configure it to auto-format files. Navigate to Settings.
    1. Click the gear icon at the bottom of the left sidebar, then select Settings.
    2. Alternatively, press `Cmd+,` or go to Code > Settings > Settings on Mac, or go to File > Preferences > Settings on Windows.
 5. Enter "format" in the search bar. Under "Editor: Default Formatter," select "Prettier - Code formatter."
 6. Finally, find the "Editor: Format On Save" option and make sure it's checked.
+   <img src="../images/configure-vs-code.png">
 
 ## Git
 

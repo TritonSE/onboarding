@@ -25,6 +25,6 @@ _Alternatively, you can also [create a personal access token](https://docs.githu
 
 </details>
 
-| Previous                                       | Up           | Next                                                |
-| ---------------------------------------------- | ------------ | --------------------------------------------------- |
-| [Part 0.0. Install software](./0-0-Install.md) | [Part 0](./) | [Part 0.2. Fork and run the project](./0-2-Fork.md) |
+| Previous                                       | Up           | Next                                                  |
+| ---------------------------------------------- | ------------ | ----------------------------------------------------- |
+| [Part 0.0. Install software](./0-0-Install.md) | [Part 0](./) | [Part 0.2. Clone and run the project](./0-2-Clone.md) |
