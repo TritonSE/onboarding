@@ -36,10 +36,15 @@ You should now have a copy of all the starter code in the folder you selected.
 We're almost ready to run the project for the first time! Before we can do that, we just need to add some environment variables required by the code.
 
 1. Open the repo in VS Code (File > Open Folder, then select the root folder of the repo). In the `backend` folder, create a new file named `.env`.
-2. Paste the following into the .env file:
+2. Paste the following into the `.env` file:
    ```
    PORT=3001
    MONGODB_URI="mongodb://127.0.0.1:27017/todoList"
+   FRONTEND_ORIGIN="http://localhost:3000"
+   ```
+3. Create another `.env` in the `frontend` folder:
+   ```
+   REACT_APP_API_BASE_URL="http://localhost:3001"
    ```
 
 <details>
