@@ -33,20 +33,23 @@ export interface ButtonProps extends React.ComponentProps<"button"> {
  * with our own styling and restrictions on what can be put inside of it.
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { label, kind = "primary", ...props },
+  { label, kind = "primary", className, ...props },
   ref,
 ) {
-  let className = styles.button;
+  let buttonClass = styles.button;
   switch (kind) {
     case "primary":
-      className += ` ${styles.primary}`;
+      buttonClass += ` ${styles.primary}`;
       break;
     case "secondary":
-      className += ` ${styles.secondary}`;
+      buttonClass += ` ${styles.secondary}`;
       break;
   }
+  if (className) {
+    buttonClass += ` ${className}`;
+  }
   return (
-    <button ref={ref} className={className} {...props}>
+    <button ref={ref} className={buttonClass} {...props}>
       {label}
     </button>
   );

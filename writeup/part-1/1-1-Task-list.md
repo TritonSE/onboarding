@@ -113,7 +113,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
      }
    }
    ```
-9. Using the existing `getTask` and `createTask` functions as guides, complete the implementation of `getAllTasks`.
+9. Using the existing `getTask` and `createTask` functions as guides, complete the implementation of `getAllTasks`. Be sure to process each individual element of the list from JSON into a `Task` object using `parseTask`.
 
 ## New component: `TaskItem`
 
@@ -185,6 +185,8 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 
       ```css
       .item {
+        height: 3rem;
+        border-bottom: 1px solid var(--color-text-secondary);
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -198,8 +200,8 @@ _In a real project, we could use a route like this to search and sort/filter Tas
    2. Add another CSS class for the **inner** `<div>`, which contains the title and description labels. It should be similar to the previous class, but we want the children to be laid out in the column direction (vertical), to be centered vertically, and to stretch out as much as possible horizontally. We also want the `<div>` itself to take up all remaining space in the parent `<div>` and to have a bottom border. You can copy and fill in the template below.
       ```css
       .textContainer {
+        height: 100%;
         flex-grow: ???;
-        border-bottom: 1px solid var(--color-text-secondary);
         display: flex;
         flex-direction: ???;
         justify-content: ???;
@@ -290,6 +292,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 10. Add some CSS classes to `TaskList.module.css` and add the corresponding `className` props to `TaskList.tsx`.
     1. We need one class for the list title, which uses the heading font. This works similarly to the title and description classes from `TaskItem`.
     2. We need another class for the inner `<div>`, which is the item container. Use flexbox again to align its children: column direction, horizontally stretched. The item container itself should also have `width: 100%`.
+    3. Finally, we need a class for the outermost list container `<div>`. This just needs a top margin of 3rem.
 11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack.
 
 <details>
