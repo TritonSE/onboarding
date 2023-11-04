@@ -1,5 +1,7 @@
 # Introduction
 
+**Note:** We recommend viewing these writeup files on GitHub. You can quickly navigate the headings in each part by clicking on this icon at the top of the file: <img src="./images/contents-icon.png" width="16" height="16" />
+
 ## Project overview
 
 We want to build a simple todo list app to keep track of tasks. At a high level, the app should be able to do the following things:
