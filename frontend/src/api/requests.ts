@@ -9,6 +9,13 @@
 type Method = "GET" | "POST" | "PUT";
 
 /**
+ * The first part of the backend API URL, which we will automatically prepend to
+ * every request. This means in the rest of our code, we can write "/api/foo"
+ * instead of "http://localhost:3001/api/foo".
+ */
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+/**
  * A wrapper around the built-in `fetch()` function that abstracts away some of
  * the low-level details so we can focus on the important parts of each request.
  * See https://developer.mozilla.org/en-US/docs/Web/API/fetch for information
@@ -70,7 +77,7 @@ async function assertOk(response: Response): Promise<void> {
 }
 
 /**
- * Sends a GET request to the provided URL.
+ * Sends a GET request to the provided API URL.
  *
  * @param url The URL to request
  * @param headers The headers of the request (optional)
@@ -78,13 +85,13 @@ async function assertOk(response: Response): Promise<void> {
  */
 export async function get(url: string, headers: Record<string, string> = {}): Promise<Response> {
   // GET requests do not have a body
-  const response = await fetchRequest("GET", url, undefined, headers);
+  const response = await fetchRequest("GET", API_BASE_URL + url, undefined, headers);
   assertOk(response);
   return response;
 }
 
 /**
- * Sends a POST request to the provided URL.
+ * Sends a POST request to the provided API URL.
  *
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
@@ -96,13 +103,13 @@ export async function post(
   body: unknown,
   headers: Record<string, string> = {},
 ): Promise<Response> {
-  const response = await fetchRequest("POST", url, body, headers);
+  const response = await fetchRequest("POST", API_BASE_URL + url, body, headers);
   assertOk(response);
   return response;
 }
 
 /**
- * Sends a PUT request to the provided URL.
+ * Sends a PUT request to the provided API URL.
  *
  * @param url The URL to request
  * @param body The body of the request, or undefined if there is none
@@ -114,7 +121,7 @@ export async function put(
   body: unknown,
   headers: Record<string, string> = {},
 ): Promise<Response> {
-  const response = await fetchRequest("GET", url, body, headers);
+  const response = await fetchRequest("PUT", API_BASE_URL + url, body, headers);
   assertOk(response);
   return response;
 }
