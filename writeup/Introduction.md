@@ -1,6 +1,6 @@
 # Introduction
 
-**Note:** We recommend viewing these writeup files on GitHub. You can quickly navigate the headings in each part by clicking on this icon at the top of the file: <img src="./images/contents-icon.png" width="16" height="16" />
+**Note:** We recommend viewing these writeup files on GitHub. You can quickly navigate the headings in each part by clicking on this icon at the top of the file: <img src="./images/contents-icon.png" width="20" height="20" />
 
 ## Project overview
 
