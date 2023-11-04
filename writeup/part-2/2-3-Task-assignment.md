@@ -30,7 +30,7 @@ Finally, we'll add the ability to assign users to tasks and see who is the assig
 
 4. Add styles to the `UserTag` component. You should just need some layout styling and a `border-radius` on the profile picture.
 5. Export `UserTag` from `components/index.ts`.
-6. **Optional:** Add a `className` prop and pass it along to the outermost element in your `UserTag` JSX. For example, if you used a `<div>` as the outermost element, then write `<div className={className}>`. You can use this prop to make layout easier in the next steps.
+6. **Optional:** Add a `className` prop and pass it along to the outermost element in your `UserTag` JSX. You can use this prop to make layout easier in the next steps.
 
 ## Update to component: `TaskItem`
 

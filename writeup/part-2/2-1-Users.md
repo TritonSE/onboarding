@@ -62,7 +62,7 @@ Creates a new User object in the database with the fields provided in the reques
 3. Create a new file `backend/src/validators/user.ts`.
 4. Use `createTask` from `validators/task.ts` as a guide to define a new `express-validator` validation chain.
    ```typescript
-   export const createTask = [
+   export const createUser = [
      // ...
    ];
    ```
@@ -133,7 +133,9 @@ The `Task` schema should have the following additional fields:
 ### Walkthrough
 
 1. In `backend/src/models/task.ts`, update the `Task` schema with the new `assignee` field. Be sure to use the [ObjectId type](https://mongoosejs.com/docs/schematypes.html#objectids) from Mongoose and make it a [`ref`](https://mongoosejs.com/docs/populate.html) to the `'User'` schema.
-2. Update all API routes that return a Task object to [populate](https://mongoosejs.com/docs/populate.html#population) the `assignee` field with the corresponding User object. This means Mongoose will automatically replace the ID with the actual object in the return value, or null if it doesn't exist. You should update `getTask`, `updateTask`, and `getAllTasks` in `backend/src/controllers`.
+2. Update all API routes that return a Task object to [populate](https://mongoosejs.com/docs/populate.html#population) the `assignee` field with the corresponding User object. This means Mongoose will automatically replace the ID with the actual object in the return value, or null if it doesn't exist. You should update `getTask`, `createTask`, `updateTask`, and `getAllTasks` in `backend/src/controllers`.
+
+   1. For `createTask`, you may need to run a query for the newly created Task so you can populate it.
    <details>
    <summary><strong>🤔 For new developers: Populating objects</strong></summary>
 

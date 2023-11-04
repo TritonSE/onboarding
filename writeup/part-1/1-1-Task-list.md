@@ -198,6 +198,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
       This sets the `<div>` to use flexbox layout, have its content axis in the row direction (so its children will be laid out side-by-side), center its children on the cross axis (so they will be vertically centered), and add a gap of 0.25rem (4px) between children. Refer to the [CSS-Tricks flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) or the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) for more information on each property and its possible values.
 
    2. Add another CSS class for the **inner** `<div>`, which contains the title and description labels. It should be similar to the previous class, but we want the children to be laid out in the column direction (vertical), to be centered vertically, and to stretch out as much as possible horizontally. We also want the `<div>` itself to take up all remaining space in the parent `<div>` and to have a bottom border. You can copy and fill in the template below.
+
       ```css
       .textContainer {
         height: 100%;
@@ -206,9 +207,24 @@ _In a real project, we could use a route like this to search and sort/filter Tas
         flex-direction: ???;
         justify-content: ???;
         align-items: ???;
+        overflow: hidden;
+      }
+
+      .textContainer span {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       ```
+
       Remember to add the new `className` prop in `TaskItem.tsx` as well.
+      <details>
+      <summary><strong>❓ Hint: Truncating overflowing text</strong></summary>
+
+      _It can be surprisingly complicated to truncate overflowing text using only CSS. The `.textContainer span` styles in the above code block achieve this in combination with the `overflow: hidden;` on `.textContainer`. This may come in handy when implementing other components! (Credit to this [CSS-Tricks snippet](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/) and this particular [comment](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/#comment-1607839).)_
+      </details>
+
    3. Add two more CSS classes, one for the title label and one for the description label. For both, you only need to set the font property using one of the app fonts in `globals.css`. The `TaskItem` title uses the label font and the description uses the body font. Here's CSS for the title:
       ```css
       .title {
@@ -293,7 +309,7 @@ _In a real project, we could use a route like this to search and sort/filter Tas
     1. We need one class for the list title, which uses the heading font. This works similarly to the title and description classes from `TaskItem`.
     2. We need another class for the inner `<div>`, which is the item container. Use flexbox again to align its children: column direction, horizontally stretched. The item container itself should also have `width: 100%`.
     3. Finally, we need a class for the outermost list container `<div>`. This just needs a top margin of 3rem.
-11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack.
+11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form (making sure to test things like super long titles and descriptions) and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack.
 
 <details>
 <summary><strong>✅ Good practice: List element instead of generic div</strong></summary>
