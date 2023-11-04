@@ -17,18 +17,20 @@ Finally, we'll add the ability to assign users to tasks and see who is the assig
 
 1. Export the user icon from Figma as an SVG.
    1. Right-click on the icon, choose "Select layer > User icon", then click "Export User icon" in the Export panel of the right sidebar.
+   2. Save the SVG in the `frontend/public` folder with a name like `userDefault.svg`.
 2. In `frontend/src/components`, create two new files: `UserTag.tsx` and `UserTag.module.css`.
 3. Write the `UserTag` component. It should be a "pure" component (no state or side effects). Make sure you cover all the possible cases with conditional rendering.
 
-   1. Use an [`<img>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) to display the profile picture.
+   1. Use an [`<img>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) to display the profile picture. To use the default icon we just downloaded, pass in `src="/userDefault.svg"` (or whatever file name you used).
    <details>
    <summary><strong>❓ Hint: CORS errors</strong></summary>
 
    _You might encounter a CORS (Cross-Origin Resource Sharing) permission error caused by the profile picture. This happens because browsers block requests for any resource that's not from the same origin (in our case, `localhost:3000`) by default for security reasons. You can ignore these errors and just use the example profile pictures that we provided (see [Part 2.1](./2-1-Users.md))._
    </details>
 
-4. Add styles to the `UserTag` component. You should just need some layout styling, font styling for the name label, and a border-radius on the profile picture.
-5. **Optional:** Add a `className` prop and pass it along to the outermost element in your `UserTag` JSX. For example, if you used a `<div>` as the outermost element, then write `<div className={className}>`. You can use this prop to make layout easier in the next steps.
+4. Add styles to the `UserTag` component. You should just need some layout styling and a `border-radius` on the profile picture.
+5. Export `UserTag` from `components/index.ts`.
+6. **Optional:** Add a `className` prop and pass it along to the outermost element in your `UserTag` JSX. You can use this prop to make layout easier in the next steps.
 
 ## Update to component: `TaskItem`
 
@@ -66,15 +68,17 @@ Finally, we'll add the ability to assign users to tasks and see who is the assig
 
 [Link to updated `TaskDetail` page in Figma](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App?type=design&node-id=38-575&mode=design&t=sAnv6Hgp6SzriN7g-4)
 
+- Show a `UserTag` for the task's assignee.
 - When "Edit task" is clicked, display the `TaskForm` component in edit mode with the data from this task.
 - When the `TaskForm` is submitted, display the task information view again with the updated task data.
 
 ### Walkthrough
 
-1. In the `TaskDetail` page component, add another state variable `isEditing` which will store a boolean indicating whether the `TaskForm` is open.
-2. Set `isEditing` to true when the "Edit task" button is clicked.
-3. When `isEditing` is true, display a `TaskForm` in edit mode prefilled with this task's data; otherwise, display the task information as we just implemented. Upon submission of the `TaskForm`, change `isEditing` back to false and set the `task` state variable to the updated task in the callback.
-4. Test your changes by opening the `TaskDetail` page, clicking "Edit task," changing the values, and clicking Save. You can copy and paste user IDs from mongosh. Try this for multiple different tasks and try some special cases: empty form fields, a task ID instead of a user ID, a nonexistent ID, no change in the form, etc.
+1. In the `TaskDetail` page component, import `UserTag` and use it to display the assignee.
+2. Add another state variable `isEditing` which will store a boolean indicating whether the `TaskForm` is open.
+3. Set `isEditing` to true when the "Edit task" button is clicked.
+4. When `isEditing` is true, display a `TaskForm` in edit mode prefilled with this task's data; otherwise, display the task information as we just implemented. Upon submission of the `TaskForm`, change `isEditing` back to false and set the `task` state variable to the updated task in the callback.
+5. Test your changes by opening the `TaskDetail` page, clicking "Edit task," changing the values, and clicking Save. You can copy and paste user IDs from mongosh. Try this for multiple different tasks and try some special cases: empty form fields, a task ID instead of a user ID, a nonexistent ID, no change in the form, etc.
    <details>
    <summary><strong>🤔 For new developers: Thinking about the user experience</strong></summary>
 

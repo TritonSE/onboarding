@@ -26,7 +26,13 @@ Next, we'll add a new frontend page that displays information about a particular
 6. Within the `TaskDetail` component, add a state variable `task` which will store the Task object and add a `useEffect` hook which retrieves the task and puts it into that state variable.
    1. Use the [`useParams` hook](https://reactrouter.com/en/main/hooks/use-params) from React Router to get the task ID from the URL (this is called a [dynamic segment](https://reactrouter.com/en/main/route/route#dynamic-segments)). This ID should be the only dependency of the `useEffect` hook.
    2. Use the `getTask` function from `frontend/src/api/tasks.ts` to retrieve the task from the backend.
-7. Add the various text components, Home page link, and "Edit task" button as shown in the Figma. Be sure to style them correctly—you can add a new CSS file `pages/TaskDetail.module.css` for font and layout styling—and to conditionally render things as needed.
+7. Add the various text components, Home page link, and "Edit task" button as shown in the Figma. Be sure to style them correctly—you can add a new CSS file `pages/TaskDetail.module.css` for font and layout styling—and to conditionally render things as needed. Also, use the `Helmet` component to set the page title as specified above.
+   <details>
+   <summary><strong>❓ Hint: Date-time formatting</strong></summary>
+
+   _We recommend using the JavaScript built-in class [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) to format dates and times consistently. In this case, for the task creation date, you can use the `"en-US"` locale, `"full"` date style, and `"short"` time style._
+   </details>
+
 8. Verify that different tasks from your local database are displayed correctly on the page. Make sure to check special cases like overflowing text, empty description, and nonexistent ID.
 
 ## Update to component: `TaskItem`

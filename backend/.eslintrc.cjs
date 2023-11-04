@@ -3,11 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-  ],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -16,7 +12,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   ignorePatterns: [".eslintrc.cjs"],
-  plugins: ["@typescript-eslint", "react", "no-relative-import-paths"],
+  plugins: ["@typescript-eslint", "no-relative-import-paths"],
   rules: {
     "default-case": "off",
     "no-plusplus": "off",

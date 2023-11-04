@@ -1,10 +1,7 @@
 # 1.3. Make a pull request
 
 1. Open your repository in GitHub (your fork, not the original).
-2. Create a pull request from your `part-1` branch into `main`. There are several ways to get there:
-   1. If you pushed changes recently, you'll see a banner at the top of the page with a button to "Create pull request." Click that button.
-   2. Alternatively, open the `part-1` branch by selecting it from the branch selection menu, then click "Create pull request."
-   3. Alternatively, click the "Pull requests" tab at the top of the page, then click "New pull request." Select the `part-1` branch in the second dropdown menu, then click "Create pull request."
+2. [Start a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request#creating-the-pull-request) from your `part-1` branch into `main`.
 3. Scroll through the diff (difference comparison) to make sure you haven't accidentally left in debugging code, TODO comments, etc. If you have, remove them and push a new commit.
    <details>
    <summary><strong>✅ Good practice: Fix problems before review</strong></summary>
@@ -30,6 +27,11 @@
    <summary><strong>✅ Good practice: Keep main commit history clean</strong></summary>
 
    _There are [multiple ways to merge a PR](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) on GitHub: merge commit, squash-and-merge, or rebase-and-merge. We generally recommend that you do one of the latter two in order to keep the `main` commit history clean. Your engineering manager will decide the policy for your project._
+   </details>
+   <details>
+   <summary><strong>✅ Good practice: Enforce these practices with your repo settings</strong></summary>
+
+   _You can enable or disable each PR merge method in your repository settings, as well as set [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) to, say, require automatic checks to pass before a PR can be merged into the `main` branch. These options are set in the template repo, but they're not copied to repos created from it. Your engineering manager should handle the settings on your future project repository._
    </details>
 
 7. Back in your command prompt, checkout and pull the `main` branch to update it on your local computer:

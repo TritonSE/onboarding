@@ -62,7 +62,7 @@ Creates a new User object in the database with the fields provided in the reques
 3. Create a new file `backend/src/validators/user.ts`.
 4. Use `createTask` from `validators/task.ts` as a guide to define a new `express-validator` validation chain.
    ```typescript
-   export const createTask = [
+   export const createUser = [
      // ...
    ];
    ```
@@ -74,7 +74,7 @@ Creates a new User object in the database with the fields provided in the reques
    ```shell
    curl -X "POST" http://127.0.0.1:3001/api/user \
      -H "Content-Type: application/json" \
-     -d '{\"name\":\"Some name\",\"profilePictureURL\":\"Some URL to an image\"}'
+     -d '{"name":"<Some name>","profilePictureURL":"<Some URL to an image>"}'
    ```
 
    Feel free to use the example profile pictures that we've provided in the `frontend/public` folder. The URLs for these would be, for example, `/profile1.png` (including the leading slash).
@@ -113,12 +113,13 @@ Returns the User object with the provided ID. If no such User exists in the data
 ### Walkthrough
 
 1. In `backend/src/controllers/user.ts`, add another request handler `getUser`. Use `getTask` from `controllers/task.ts` as a guide.
-2. Test your implementation by using Postman or running the following command with some different IDs:
+2. Add the new route to `src/routes/user.ts`.
+3. Test your implementation by using Postman or running the following command with some different IDs:
    ```shell
    curl http://127.0.0.1:3001/api/user/<id>
    ```
    Try a couple User IDs that you got from mongosh, as well as some Task IDs and some nonexistent IDs.
-3. In `frontend/src/api/users.ts`, add an API client function that makes requests to this route. Use `getTask` from `api/tasks.ts` as a guide.
+4. In `frontend/src/api/users.ts`, add an API client function that makes requests to this route. Use `getTask` from `api/tasks.ts` as a guide.
 
 ## Update to schema: `Task`
 
@@ -132,7 +133,9 @@ The `Task` schema should have the following additional fields:
 ### Walkthrough
 
 1. In `backend/src/models/task.ts`, update the `Task` schema with the new `assignee` field. Be sure to use the [ObjectId type](https://mongoosejs.com/docs/schematypes.html#objectids) from Mongoose and make it a [`ref`](https://mongoosejs.com/docs/populate.html) to the `'User'` schema.
-2. Update all API routes that return a Task object to populate the `assignee` field with the corresponding User object. This means Mongoose will automatically replace the ID with the actual object in the return value, or null if it doesn't exist. You should update `getTask`, `createTask`, and `getAllTasks` in `backend/src/controllers`.
+2. Update all API routes that return a Task object to [populate](https://mongoosejs.com/docs/populate.html#population) the `assignee` field with the corresponding User object. This means Mongoose will automatically replace the ID with the actual object in the return value, or null if it doesn't exist. You should update `getTask`, `createTask`, `updateTask`, and `getAllTasks` in `backend/src/controllers`.
+
+   1. For `createTask`, you may need to run a query for the newly created Task so you can populate it.
    <details>
    <summary><strong>🤔 For new developers: Populating objects</strong></summary>
 
@@ -141,10 +144,15 @@ The `Task` schema should have the following additional fields:
 
 3. In `frontend/src/api/tasks.ts`, add the following field to both the `Task` and `TaskJSON` interfaces:
    ```typescript
-   assignee: User;
+   assignee?: User;
    ```
    where `User` is imported from `api/users.ts`.
-4. Update the `parseTask` function to include the assignee.
+4. In the same file, add the following field to `CreateTaskRequest` and `UpdateTaskRequest`:
+   ```typescript
+   assignee?: string;
+   ```
+   This is a string instead of a `User` because we only want to send the ID, not the entire User object.
+5. Update the `parseTask` function to include the assignee.
 
 <details open>
 <summary><strong>⚠️ Caution: Updating validators</strong></summary>

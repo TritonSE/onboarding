@@ -58,6 +58,18 @@ export interface CreateTaskRequest {
 }
 
 /**
+ * The expected inputs when we want to update an existing Task object. Similar to
+ * `CreateTaskRequest`.
+ */
+export interface UpdateTaskRequest {
+  _id: string;
+  title: string;
+  description?: string;
+  isChecked: boolean;
+  dateCreated: Date;
+}
+
+/**
  * The implementations of these API client functions are provided as part of the
  * MVP. You can use them as a guide for writing the other client functions.
  */
