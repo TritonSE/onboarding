@@ -15,11 +15,11 @@ Follow the steps below to install VS Code:
 1. Download VS Code for your operating system from the [VS Code downloads page](https://code.visualstudio.com/download).
 2. Follow the installer instructions.
 
-## Prettier extension
+## Prettier and ESLint extensions
 
-No matter what editor you choose, we **strongly** recommend that you also install the corresponding Prettier extension (and your engineering manager may require you to do so). We use Prettier to automatically format JavaScript/TypeScript code (such as fixing indentation) so it's more consistent and easier to read.
+No matter what editor you choose, we **strongly** recommend that you also install the corresponding Prettier and ESLint extensions (and your engineering manager may require you to do so). We use Prettier to automatically format JavaScript/TypeScript code (such as fixing indentation) so it's more consistent and easier to read, and we use ESLint to make sure the code follows certain rules so it's more likely to work correctly.
 
-Follow the steps below to install and configure the Prettier extension for VS Code:
+Follow the steps below to install and configure the [Prettier extension for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode):
 
 1. Navigate to the Extensions tab in the left sidebar.
 2. Enter "Prettier" in the search bar and select the extension published by prettier.io.
@@ -31,6 +31,8 @@ Follow the steps below to install and configure the Prettier extension for VS Co
 5. Enter "format" in the search bar. Under "Editor: Default Formatter," select "Prettier - Code formatter."
 6. Finally, find the "Editor: Format On Save" option and make sure it's checked.
    <img src="../images/configure-vs-code.png">
+
+Similarly, install the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) published by Microsoft as well. This extension doesn't require any additional configuration.
 
 ## Git
 
