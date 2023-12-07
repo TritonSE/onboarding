@@ -69,6 +69,13 @@ For context, JavaScript comes from a standard called [ECMAScript](https://en.wik
 
 However, MongoDB doesn't enforce data types like SQL databases do. So, we use a JavaScript library called [Mongoose](https://mongoosejs.com) to interface with MongoDB and provide extra type checks, helper functions, and more.
 
+<details>
+<summary><strong>ℹ️ Definition: Database</strong></summary>
+
+_A **database** is a specialized place for storing large amounts of data in the backend of an application. Examples of types of data we could store include usernames, passwords, profile pictures, post/comment text, order numbers, chat messages, payment information, and much more. We typically want to store these in the backend so that a user can log in on a different device and still have access to the same information._
+
+</details>
+
 </details>
 
 ### Node
@@ -153,6 +160,23 @@ Throughout this guide, we include pointers on Git usage to help you practice the
 [Figma](https://www.figma.com) is an **online collaborative design prototyping software** used by many software companies. It's like Google Docs in that multiple people can work on the same file at the same time. It also has many tools for developers to help translate Figma designs into code, so feel free to play around with it to get some practice. We'll discuss Figma and our todo app designs more in [Part 0](./part-0/).
 
 </details>
+
+## Quick links
+
+Here are some links to documentation and guides that you may find helpful:
+
+- Mozilla Developer Network (MDN) references: Each is detailed and thorough, often with explanations of best practices too
+  - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)—syntax, operators, built-in objects and functions
+  - [HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference)—elements and attributes
+  - [CSS reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)—properties, pseudo-classes, selectors
+- [TypeScript language reference](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+  - Also see the [Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) for a higher-level overview of each concept
+- [Mongoose API reference](https://mongoosejs.com/docs/api/mongoose.html)
+- [Express API reference](https://expressjs.com/en/api.html)
+- [React reference](https://react.dev/reference/react)
+  - [Built-in hooks](https://react.dev/reference/react/hooks)
+  - [Built-in DOM components](https://react.dev/reference/react-dom/components)
+- [CSS-Tricks flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## Before we begin
 
