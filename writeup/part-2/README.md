@@ -10,7 +10,7 @@ Now that we've implemented an MVP, it's time to start thinking about v2. For v2,
 - Task detail page that displays more information about a task
 - Ability to edit a task's title, description, and assignee
 
-You can find the designs for these features on the "Part 2" page in Figma. The walkthrough sections in this part of the guide are less detailed than those in Part 1. We hope you feel confident enough to work mostly on your own by this point, but you can absolutely still reach out to **#onboarding** if you get stuck!
+You can find the designs for these features on the "Part 2" page in Figma. _Note that the walkthrough sections in this part of the guide are intentionally less detailed than those in Part 1._ We hope you feel confident enough to work mostly on your own by this point, but you can absolutely still reach out to **#onboarding** if you get stuck!
 
 ## Table of contents
 
