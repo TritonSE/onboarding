@@ -2,7 +2,7 @@
 
 **More features**
 
-Estimated time: 2 to 6 hours
+Estimated time: 2 to 12 hours
 
 Now that we've implemented an MVP, it's time to start thinking about v2. For v2, we'd like to add these additional features:
 

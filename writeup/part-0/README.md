@@ -2,7 +2,7 @@
 
 **Project setup and introduction to the code**
 
-Estimated time: 1 to 2 hours
+Estimated time: 1 to 4 hours
 
 ## Table of contents
 
