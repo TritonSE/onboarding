@@ -1,8 +1,9 @@
-import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { TaskForm } from "src/components/TaskForm";
+
 import type { CreateTaskRequest, Task } from "src/api/tasks";
-import { TaskForm, type TaskFormProps } from "src/components/TaskForm";
+import type { TaskFormProps } from "src/components/TaskForm";
 
 const TITLE_INPUT_ID = "task-title-input";
 const DESCRIPTION_INPUT_ID = "task-description-input";

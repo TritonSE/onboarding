@@ -12,8 +12,11 @@ type Method = "GET" | "POST" | "PUT";
  * The first part of the backend API URL, which we will automatically prepend to
  * every request. This means in the rest of our code, we can write "/api/foo"
  * instead of "http://localhost:3001/api/foo".
+ *
+ * See https://vitejs.dev/guide/env-and-mode for more info about env variables
+ * in Vite projects.
  */
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * A wrapper around the built-in `fetch()` function that abstracts away some of
@@ -86,7 +89,7 @@ async function assertOk(response: Response): Promise<void> {
 export async function get(url: string, headers: Record<string, string> = {}): Promise<Response> {
   // GET requests do not have a body
   const response = await fetchRequest("GET", API_BASE_URL + url, undefined, headers);
-  assertOk(response);
+  void assertOk(response);
   return response;
 }
 
@@ -104,7 +107,7 @@ export async function post(
   headers: Record<string, string> = {},
 ): Promise<Response> {
   const response = await fetchRequest("POST", API_BASE_URL + url, body, headers);
-  assertOk(response);
+  void assertOk(response);
   return response;
 }
 
@@ -122,7 +125,7 @@ export async function put(
   headers: Record<string, string> = {},
 ): Promise<Response> {
   const response = await fetchRequest("PUT", API_BASE_URL + url, body, headers);
-  assertOk(response);
+  void assertOk(response);
   return response;
 }
 

@@ -1,4 +1,6 @@
-import { type APIResult, get, handleAPIError, post } from "src/api/requests";
+import { get, handleAPIError, post } from "src/api/requests";
+
+import type { APIResult } from "src/api/requests";
 
 /**
  * Defines the "shape" of a Task object (what fields are present and their types) for
