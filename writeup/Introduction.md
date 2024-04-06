@@ -117,7 +117,7 @@ Websites are rendered (displayed) in a browser through a combination of HTML, CS
 
 However, it's tedious to write lots of individual HTML, CSS, and JS files. React makes development easier by **combining structure and functionality** under one unified JavaScript framework. See [Part 0](./part-0/) for some illustration with the files in the starter code.
 
-We used [Create React App](https://create-react-app.dev) (CRA) to initialize our React project in the `frontend` folder. It can be quite involved to get React, TypeScript, and all the other packages to work together, but CRA takes care of that for us. Some of the frontend code, therefore, was auto-generated.
+We used [Vite](https://vitejs.dev) to initialize our React project in the `frontend` folder. It can be quite involved to get React, TypeScript, and all the other packages to work together, but Vite takes care of that for us. Some of the frontend code, therefore, was auto-generated.
 
 Alternatives to React include AngularJS and Vue.js.
 

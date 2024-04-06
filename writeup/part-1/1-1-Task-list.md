@@ -156,10 +156,20 @@ _In a real project, we could use a route like this to search and sort/filter Tas
    As you can see, the `TaskItem` component only has one prop, which is of type `Task`. We don't need any other information to render the component.
 
 4. For later convenience, add the following line to `frontend/src/components/index.ts`:
+
    ```typescript
    export { TaskItem } from "./TaskItem";
    ```
+
    This allows us to import `TaskItem` from `"src/components"` together with other components, instead of individually specifying `"src/components/TaskItem"`.
+
+   <details>
+   <summary><strong>✅ Good practice: No barrel files</strong></summary>
+
+   _This `index.ts` file is known as a "barrel file." It's common to use these in order to simplify imports, but [Vite actually recommends against using them](https://vitejs.dev/guide/performance.html#avoid-barrel-files) for performance reasons. Maybe one day we'll get around to removing them from this repo._
+
+   </details>
+
 5. First, we'll complete the structure of this component. It's mostly done already in the skeleton code (using divs and spans), but we need to display the data from the task object.
    1. Fill in the placeholders to render `task.title` and `task.description`. Refer to `components/Button.tsx` for an example of how to render a string (the `label` variable in that case). Note that we use [JavaScript shortcutting to conditionally render](https://react.dev/learn/conditional-rendering#logical-and-operator-) the description.
    2. Fill in the placeholder to render a `CheckButton` component. Refer to `components/TaskForm.tsx` for an example of how to use other custom components (`TextField` and `Button` in that case). For now, just pass in the prop `checked={task.isChecked}`—the button won't do anything until [Part 1.2](./1-2-Task-checkoff.md).
@@ -176,72 +186,74 @@ _In a real project, we could use a route like this to search and sort/filter Tas
    />
    ```
    Also add `TaskItem` to the import from `"src/components"`.
-7. Start the frontend if it's not already running and open http://localhost:3000. You should see a check mark, "My title", and "My description" somewhere on the page, although it won't look like the design yet.
+7. Start the frontend if it's not already running and open http://localhost:5173. You should see a check mark, "My title", and "My description" somewhere on the page, although it won't look like the design yet.
 8. Next, we'll implement styles for `TaskItem`. With CSS Modules, we add styles by writing a CSS class (such as `.exampleClass`) in `TaskItem.module.css`, then assigning it to a particular React element using the prop `className={styles.exampleClass}`. Refer to `components/TextField.tsx` and the corresponding `TextField.module.css` for an example.
 
-   There are many valid approaches to writing CSS—we'll use flexbox layout, which is highly versatile. Note that the `<div>`s in `TaskItem.tsx` correspond directly to the frame elements within a `TaskItem` in Figma.
+There are many valid approaches to writing CSS—we'll use flexbox layout, which is highly versatile. Note that the `<div>`s in `TaskItem.tsx` correspond directly to the frame elements within a `TaskItem` in Figma.
 
-   1. Copy the following CSS class for the **outermost** `<div>` into `TaskItem.module.css`, then add the corresponding `className` prop (`className={styles.item}`) to that `<div>` in `TaskItem.tsx`.
+1.  Copy the following CSS class for the **outermost** `<div>` into `TaskItem.module.css`, then add the corresponding `className` prop (`className={styles.item}`) to that `<div>` in `TaskItem.tsx`.
 
-      ```css
-      .item {
-        height: 3rem;
-        border-bottom: 1px solid var(--color-text-secondary);
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        column-gap: 0.25rem;
-      }
-      ```
+    ```css
+    .item {
+      height: 3rem;
+      border-bottom: 1px solid var(--color-text-secondary);
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 0.25rem;
+    }
+    ```
 
-      This sets the `<div>` to use flexbox layout, have its content axis in the row direction (so its children will be laid out side-by-side), center its children on the cross axis (so they will be vertically centered), and add a gap of 0.25rem (4px) between children. Refer to the [CSS-Tricks flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) or the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) for more information on each property and its possible values.
+    This sets the `<div>` to use flexbox layout, have its content axis in the row direction (so its children will be laid out side-by-side), center its children on the cross axis (so they will be vertically centered), and add a gap of 0.25rem (4px) between children. Refer to the [CSS-Tricks flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) or the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) for more information on each property and its possible values.
 
-   2. Add another CSS class for the **inner** `<div>`, which contains the title and description labels. It should be similar to the previous class, but we want the children to be laid out in the column direction (vertical), to be centered vertically, and to stretch out as much as possible horizontally. We also want the `<div>` itself to take up all remaining space in the parent `<div>` and to have a bottom border. You can copy and fill in the template below.
+2.  Add another CSS class for the **inner** `<div>`, which contains the title and description labels. It should be similar to the previous class, but we want the children to be laid out in the column direction (vertical), to be centered vertically, and to stretch out as much as possible horizontally. We also want the `<div>` itself to take up all remaining space in the parent `<div>` and to have a bottom border. You can copy and fill in the template below.
 
-      ```css
-      .textContainer {
-        height: 100%;
-        flex-grow: ???;
-        display: flex;
-        flex-direction: ???;
-        justify-content: ???;
-        align-items: ???;
-        overflow: hidden;
-      }
+    ```css
+    .textContainer {
+      height: 100%;
+      flex-grow: ???;
+      display: flex;
+      flex-direction: ???;
+      justify-content: ???;
+      align-items: ???;
+      overflow: hidden;
+    }
 
-      .textContainer span {
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      ```
+    .textContainer span {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    ```
 
-      Remember to add the new `className` prop in `TaskItem.tsx` as well.
-      <details>
-      <summary><strong>❓ Hint: Truncating overflowing text</strong></summary>
+    Remember to add the new `className` prop in `TaskItem.tsx` as well.
+    <details>
+    <summary><strong>❓ Hint: Truncating overflowing text</strong></summary>
 
-      _It can be surprisingly complicated to truncate overflowing text using only CSS. The `.textContainer span` styles in the above code block achieve this in combination with the `overflow: hidden;` on `.textContainer`. This may come in handy when implementing other components! (Credit to this [CSS-Tricks snippet](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/) and this particular [comment](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/#comment-1607839).)_
-      </details>
+    _It can be surprisingly complicated to truncate overflowing text using only CSS. The `.textContainer span` styles in the above code block achieve this in combination with the `overflow: hidden;` on `.textContainer`. This may come in handy when implementing other components! (Credit to this [CSS-Tricks snippet](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/) and this particular [comment](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/#comment-1607839).)_
+    </details>
 
-   3. Add two more CSS classes, one for the title label and one for the description label. For both, you only need to set the font property using one of the app fonts in `globals.css`. The `TaskItem` title uses the label font and the description uses the body font. Here's CSS for the title:
-      ```css
-      .title {
-        font: var(--font-label);
-      }
-      ```
-      Follow the same pattern for the description label. Apply these classes to the corresponding `<span>` elements in `TaskItem.tsx`.
-   4. Add one last CSS class which will adjust the appearance when the task is checked. Currently, all we need is to change the text color to --color-text-secondary.
-      ```css
-      .checked {
-        color: var(--color-text-secondary);
-      }
-      ```
-      Refactor the `className` on the text container `<div>` to work as follows: if `task.isChecked`, then use `styles.textContainer + " " + styles.checked`; else, use `styles.textContainer`. See `components/TextField.tsx` for one way to do this.
+3.  Add two more CSS classes, one for the title label and one for the description label. For both, you only need to set the font property using one of the app fonts in `globals.css`. The `TaskItem` title uses the label font and the description uses the body font. Here's CSS for the title:
+    ```css
+    .title {
+      font: var(--font-label);
+    }
+    ```
+    Follow the same pattern for the description label. Apply these classes to the corresponding `<span>` elements in `TaskItem.tsx`.
+4.  Add one last CSS class which will adjust the appearance when the task is checked. Currently, all we need is to change the text color to --color-text-secondary.
 
-9. View the temporary `TaskItem` on the Home page. It should look like the Figma design now, besides possibly the width. Edit the fake `Task` in `pages/Home.tsx` to test all 4 variations of the `TaskItem` (this is part of "manual testing"). If something still looks wrong and you can't figure out the problem, ping us in **#onboarding** on Slack.
-10. When you're done testing, remove the temporary `TaskItem` from the Home page. Be sure to remove it from the imports too.
+    ```css
+    .checked {
+      color: var(--color-text-secondary);
+    }
+    ```
+
+    Refactor the `className` on the text container `<div>` to work as follows: if `task.isChecked`, then use `styles.textContainer + " " + styles.checked`; else, use `styles.textContainer`. See `components/TextField.tsx` for one way to do this.
+
+5.  View the temporary `TaskItem` on the Home page. It should look like the Figma design now, besides possibly the width. Edit the fake `Task` in `pages/Home.tsx` to test all 4 variations of the `TaskItem` (this is part of "manual testing"). If something still looks wrong and you can't figure out the problem, ping us in **#onboarding** on Slack.
+6.  When you're done testing, remove the temporary `TaskItem` from the Home page. Be sure to remove it from the imports too.
 
 ## New component: `TaskList`
 
