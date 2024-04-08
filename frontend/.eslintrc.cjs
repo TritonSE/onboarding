@@ -12,7 +12,7 @@ module.exports = {
     "plugin:import/typescript",
     "prettier",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs", "jest.config.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     sourceType: "module",
@@ -24,7 +24,7 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["react-refresh", "no-relative-import-paths", "jest"],
+  plugins: ["react-refresh", "no-relative-import-paths"],
   rules: {
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
