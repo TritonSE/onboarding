@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { createTask, type Task } from "src/api/tasks";
+import { useState } from "react";
+import { createTask } from "src/api/tasks";
 import { Button, TextField } from "src/components";
 import styles from "src/components/TaskForm.module.css";
+
+import type { Task } from "src/api/tasks";
 
 export interface TaskFormProps {
   mode: "create" | "edit";
@@ -49,27 +51,28 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
       return;
     }
     setLoading(true);
-    createTask({ title, description }).then((result) => {
-      if (result.success) {
-        // clear the form
-        setTitle("");
-        setDescription("");
-        // onSubmit may be undefined, in which case we can't call it--this is
-        // a neat way to only call it if it's NOT undefined
-        onSubmit && onSubmit(result.data);
-      } else {
-        // You should always clearly inform the user when something goes wrong.
-        // In this case, we're just doing an `alert()` for brevity, but you'd
-        // generally want to show some kind of error state or notification
-        // within your UI. If the problem is with the user's input, then use
-        // the error states of your smaller components (like the `TextField`s).
-        // If the problem is something we don't really control, such as network
-        // issues or an unexpected exception on the server side, then use a
-        // banner, modal, popup, or similar.
-        alert(result.error);
-      }
-      setLoading(false);
-    });
+    createTask({ title, description })
+      .then((result) => {
+        if (result.success) {
+          // clear the form
+          setTitle("");
+          setDescription("");
+          // only call onSubmit if it's NOT undefined
+          if (onSubmit) onSubmit(result.data);
+        } else {
+          // You should always clearly inform the user when something goes wrong.
+          // In this case, we're just doing an `alert()` for brevity, but you'd
+          // generally want to show some kind of error state or notification
+          // within your UI. If the problem is with the user's input, then use
+          // the error states of your smaller components (like the `TextField`s).
+          // If the problem is something we don't really control, such as network
+          // issues or an unexpected exception on the server side, then use a
+          // banner, modal, popup, or similar.
+          alert(result.error);
+        }
+        setLoading(false);
+      })
+      .catch((reason) => alert(reason));
   };
 
   const formTitle = mode === "create" ? "New task" : "Edit task";

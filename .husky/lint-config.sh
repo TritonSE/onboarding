@@ -1,9 +1,10 @@
 # This config file is sourced by the pre-commit script.
+# shellcheck disable=SC2034,SC2148
 
 # Change 1 to 0 to disable linting.
 enabled=1
 
-# Directories containing Node.js projects to be linted, separated by spaces.
+# Directories containing JavaScript projects to be linted, separated by spaces.
 node_dirs='backend frontend'
 
 # Command used to run a lint check.

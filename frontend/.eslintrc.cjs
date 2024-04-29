@@ -1,78 +1,92 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
+  root: true,
+  env: { browser: true, es2020: true },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:jsx-a11y/strict",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier",
   ],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
+    tsconfigRootDir: __dirname,
+  },
   settings: {
     react: {
       version: "detect",
     },
   },
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: "./tsconfig.json",
-    tsconfigRootDir: __dirname,
-  },
-  ignorePatterns: [".eslintrc.cjs", "webpack.config.js", "jest.config.cjs"],
-  plugins: ["@typescript-eslint", "react", "no-relative-import-paths"],
+  plugins: ["react-refresh", "no-relative-import-paths"],
   rules: {
-    "default-case": "off",
-    "no-plusplus": "off",
-    "no-continue": "off",
-    "prefer-template": "off",
-    "prefer-destructuring": "off",
-    "class-methods-use-this": "off",
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
-    // Allow leading underscores in identifiers (e.g. _id in MongoDB).
-    "no-underscore-dangle": "off",
+    // Getting the eslint resolver working is left as an exercise to the reader.
+    "import/no-unresolved": "off",
 
-    // Some APIs use snake_case identifiers.
-    camelcase: "off",
+    // Uncomment these if you really need to.
+    // "@typescript-eslint/ban-ts-comment": "off",
+    // "@typescript-eslint/no-explicit-any": "off",
+    // "@typescript-eslint/no-non-null-assertion": "off",
 
-    // Depending on the context, using bracket notation might be clearer.
-    "dot-notation": "off",
-
-    /**
-     * Reassigning parameters can be useful to avoid creating another variable,
-     * and to modify objects by reference.
-     */
-    "no-param-reassign": "off",
-
-    /**
-     * Unused variables and arguments should be removed in most cases, but it's
-     * convenient to allow them when the code is still being implemented.
-     *
-     * Prefix variable names with an underscore to suppress the warning.
-     *
-     * We disable the standard ESLint version of this rule and use the
-     * TypeScript version instead. This handles things like function type
-     * declarations better.
-     */
-    "no-unused-vars": "off",
+    // Avoid bugs.
+    "@typescript-eslint/no-shadow": ["error", { ignoreTypeValueShadow: true }],
+    "@typescript-eslint/no-unsafe-unary-minus": "error",
+    "@typescript-eslint/no-unused-expressions": "error",
     "@typescript-eslint/no-unused-vars": [
-      "warn",
+      "error",
       {
         argsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
         varsIgnorePattern: "^_",
       },
     ],
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "array-callback-return": "error",
+    eqeqeq: "error",
+    "no-await-in-loop": "error",
+    "no-constant-binary-expression": "error",
+    "no-constructor-return": "error",
+    "no-constant-condition": [
+      "error",
+      {
+        checkLoops: false,
+      },
+    ],
+    "no-promise-executor-return": "error",
+    "no-self-compare": "error",
+    "no-template-curly-in-string": "error",
 
-    // Not necessary for some APIs (consistency reasons)
-    "import/prefer-default-export": "off",
-
-    // Stylistic rules.
-    "lines-between-class-members": "off",
+    // Stylistic.
+    "@typescript-eslint/no-use-before-define": "warn",
+    "@typescript-eslint/prefer-readonly": "warn",
+    "@typescript-eslint/prefer-regexp-exec": "warn",
+    "object-shorthand": ["warn", "properties"],
+    "sort-imports": ["warn", { ignoreDeclarationSort: true }],
+    "import/consistent-type-specifier-style": ["warn", "prefer-top-level"],
+    "import/order": [
+      "warn",
+      {
+        alphabetize: { order: "asc" },
+        groups: ["builtin", "external", "parent", "sibling", "index", "object", "type"],
+        "newlines-between": "always",
+      },
+    ],
 
     "no-relative-import-paths/no-relative-import-paths": [
       "warn",
       { allowSameFolder: false, rootDir: "frontend" },
     ],
+
+    // Disabled because of too many false positives.
+    "@typescript-eslint/no-unnecessary-condition": "off",
+    "react-hooks/exhaustive-deps": "off",
   },
 };

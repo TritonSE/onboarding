@@ -40,11 +40,11 @@ We're almost ready to run the project for the first time! Before we can do that,
    ```
    PORT=3001
    MONGODB_URI="mongodb://127.0.0.1:27017/todoList"
-   FRONTEND_ORIGIN="http://localhost:3000"
+   FRONTEND_ORIGIN="http://localhost:5173"
    ```
 3. Create another `.env` in the `frontend` folder:
    ```
-   REACT_APP_API_BASE_URL="http://localhost:3001"
+   VITE_API_BASE_URL="http://localhost:3001"
    ```
 
 <details>
@@ -67,6 +67,8 @@ _`.env` files are a standard way to provide environment variables to a program. 
 
 </details>
 
+**Note:** In a Vite project like our frontend, all variable names in a `.env` file should [start with `VITE_`](https://vitejs.dev/guide/env-and-mode.html#env-files).
+
 Finally, we can run our application! Follow the steps below to run both the frontend and backend. If you'd like to know more about some of the commands, see the next section. If anything fails and you can't figure out why, ping us in the **#onboarding** Slack channel.
 
 1. Make sure MongoDB is running on your computer (see [Part 0.0](./0-0-Install.md)). You can leave it running after you're done working, or stop it and restart it when you come back.
@@ -79,14 +81,12 @@ Finally, we can run our application! Follow the steps below to run both the fron
    ```shell
    npm start
    ```
-4. In another instance of the command prompt (new tab or window), repeat the above steps for the frontend folder.
+4. In another instance of the command prompt (new tab or window), start the frontend.
    ```shell
    cd frontend
    npm install
-   npm start
+   npm run dev
    ```
-
-If the frontend is running correctly, your browser should open and display the Home page of our todo app.
 
 If the backend is running correctly, you should see output like the following in your command prompt:
 
@@ -102,6 +102,18 @@ If the backend is running correctly, you should see output like the following in
 Mongoose connected!
 Server running on 3001.
 ```
+
+And if the frontend is running correctly, you should see output like the following:
+
+```
+  VITE v5.2.8  ready in 498 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
+
+In your Internet browser, visit http://localhost:5173 and you should see the Home page of our todo app.
 
 <details>
 <summary><strong>🤔 For new developers: Running npm install</strong></summary>

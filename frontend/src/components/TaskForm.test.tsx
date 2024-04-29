@@ -1,42 +1,40 @@
-import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { createTask } from "src/api/tasks";
+import { TaskForm } from "src/components/TaskForm";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
 import type { CreateTaskRequest, Task } from "src/api/tasks";
-import { TaskForm, type TaskFormProps } from "src/components/TaskForm";
+import type { TaskFormProps } from "src/components/TaskForm";
 
 const TITLE_INPUT_ID = "task-title-input";
 const DESCRIPTION_INPUT_ID = "task-description-input";
 const SAVE_BUTTON_ID = "task-save-button";
 
 /**
- * Some of our tests will verify that `TaskForm` calls the correct functions
- * when the user takes certain actions, like clicking the Save button. This mock
- * function replaces `createTask` from `src/api/tasks` so we can (1) check
- * whether that API function gets called and (2) prevent our test from trying to
- * send an actual HTTP request. Because we know how `createTask` is used in the
- * `TaskForm`, it's safe to just make this mock return `{ success: true }`--we
- * don't need to rewrite a full implementation unless that's required.
+ * The `vi.mock()` function allows us to replace the exports of another module.
+ * In this case, because `TaskForm` calls `createTask()` directly, we can't pass
+ * in our mock function as a prop, so we use `vi.mock()` to replace `createTask`
+ * from `src/api/tasks` with the mock function. Thus, if `TaskForm` is being
+ * rendered by one of these tests (as opposed to a real browser) and it tries to
+ * call `createTask()`, it will run the code that we provide below instead.
  *
- * See https://jestjs.io/docs/mock-functions for more info about mock functions.
+ * See https://vitest.dev/guide/mocking.html#modules for more info about mocking
+ * modules.
  */
-const mockCreateTask = jest.fn((_params: CreateTaskRequest) => Promise.resolve({ success: true }));
-
-/**
- * The `jest.mock()` function allows us to replace the exports of another
- * module. In this case, because `TaskForm` calls `createTask()` directly, we
- * can't pass in our mock function as a prop, so we use `jest.mock()` to replace
- * `createTask` from `src/api/tasks` with the mock function. Thus, if
- * `TaskForm` is being rendered by one of these Jest tests (as opposed to a
- * real browser) and it tries to call `createTask()`, it will run the code that
- * we provide below instead.
- *
- * See https://jestjs.io/docs/jest-object#jestmockmodulename-factory-options for
- * more info about mocking modules.
- */
-jest.mock("src/api/tasks", () => ({
-  // this doesn't work if we just use `mockCreateTask` directly, exact reason
-  // unknown, so we wrap it in a normal function
-  createTask: (params: CreateTaskRequest) => mockCreateTask(params),
+vi.mock("src/api/tasks", () => ({
+  /**
+   * Some of our tests will verify that `TaskForm` calls the correct functions
+   * when the user takes certain actions, like clicking the Save button. This mock
+   * function replaces `createTask` from `src/api/tasks` so we can (1) check
+   * whether that API function gets called and (2) prevent our test from trying to
+   * send an actual HTTP request. Because we know how `createTask` is used in the
+   * `TaskForm`, it's safe to just make this mock return `{ success: true }`--we
+   * don't need to rewrite a full implementation unless that's required.
+   *
+   * See https://vitest.dev/guide/mocking#functions for more info about mock functions.
+   */
+  createTask: vi.fn((_params: CreateTaskRequest) => Promise.resolve({ success: true })),
 }));
 
 /**
@@ -51,7 +49,7 @@ const mockTask: Task = {
 };
 
 /**
- * Renders the `TaskForm` component for use in Jest tests
+ * Renders the `TaskForm` component for use in tests
  */
 function mountComponent(props: TaskFormProps) {
   render(<TaskForm {...props} />);
@@ -59,14 +57,15 @@ function mountComponent(props: TaskFormProps) {
 
 /**
  * The callback below runs after each test (see
- * https://jestjs.io/docs/api#aftereachfn-timeout). Often you'll want to run
- * `jest.clearAllMocks()` or `jest.resetAllMocks()`, which reset the state of
- * all mock functions (https://jestjs.io/docs/jest-object#jestclearallmocks).
- * In this case, we only want to "clear" because "reset" also removes any mock
- * implementations, which we want to leave alone for this test suite.
+ * https://vitest.dev/api/#aftereach). Often you'll run `clearAllMocks()` or
+ * `resetAllMocks()`, which reset the state of all mock functions
+ * (https://vitest.dev/api/vi.html#vi-clearallmocks). In this case, we only want
+ * to "clear" because "reset" also removes any mock implementations, which we
+ * should leave alone for this test suite.
  */
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
+  cleanup();
 });
 
 /**
@@ -85,7 +84,7 @@ afterEach(() => {
  *   })
  * })
  * ```
- * See https://jestjs.io/docs/api#describename-fn for more information.
+ * See https://vitest.dev/api/#describe for more information.
  */
 describe("TaskForm", () => {
   /**
@@ -103,10 +102,11 @@ describe("TaskForm", () => {
    * `it` is actually an alias for the `test` function. We use `it` so it reads
    * like a sentence.
    *
-   * See https://jestjs.io/docs/api#testname-fn-timeout for more information.
+   * See https://vitest.dev/api/#test for more information.
    */
   it("renders create mode", () => {
     mountComponent({ mode: "create" });
+    // https://vitest.dev/api/expect.html
     expect(screen.queryByText("New task")).toBeInTheDocument();
   });
 
@@ -133,8 +133,8 @@ describe("TaskForm", () => {
     });
     const saveButton = screen.getByTestId(SAVE_BUTTON_ID);
     fireEvent.click(saveButton);
-    expect(mockCreateTask).toHaveBeenCalledTimes(1);
-    expect(mockCreateTask).toHaveBeenCalledWith({
+    expect(createTask).toHaveBeenCalledTimes(1);
+    expect(createTask).toHaveBeenCalledWith({
       title: "Updated title",
       description: "Updated description",
     });
@@ -155,7 +155,7 @@ describe("TaskForm", () => {
     mountComponent({ mode: "create" });
     const saveButton = screen.getByTestId(SAVE_BUTTON_ID);
     fireEvent.click(saveButton);
-    expect(mockCreateTask).not.toHaveBeenCalled();
+    expect(createTask).not.toHaveBeenCalled();
     await waitFor(() => {
       expect(saveButton).toBeEnabled();
     });

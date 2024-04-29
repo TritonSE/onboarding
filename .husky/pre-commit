@@ -3,6 +3,8 @@
 # produces a "cannot spawn" error with a bash shebang, since it uses dash.
 # However, dash is not available on many Unix-like systems.
 
+# shellcheck disable=SC2317
+
 log() {
 	echo "${0}: ${*}" >&2
 }
@@ -61,7 +63,7 @@ ask_yes_no() {
 	fi
 
 	while :; do
-		printf "${0}: ${prompt}"
+		printf "%s: %s" "${0}" "${prompt}"
 		read -r selection
 		selection="$(parse_yes_no "${selection}")"
 
@@ -86,7 +88,7 @@ ask_yes_no() {
 explain_no_verify() {
 	log "If you wish to bypass the lint check entirely,"
 	log "use the following command:"
-	log "    git commit --no-verify"
+	log "    NO_LINT=1 git commit"
 }
 
 dir_check() {
@@ -176,12 +178,17 @@ cancel() {
 
 main() {
 	config_file="$(dirname "${0}")/lint-config.sh"
+
+	# shellcheck source=./lint-config.sh
 	if ! . "${config_file}"; then
 		error "Error while sourcing config file '${config_file}'."
 		exit 1
 	fi
 
-	if [ "${enabled}" -eq 0 ]; then
+	secret_scan_script="$(dirname "${0}")/../.secret-scan/secret-scan.js"
+	node "${secret_scan_script}" || exit
+
+	if [ "${enabled}" = 0 ] || [ "${NO_LINT}" = 1 ]; then
 		warn "Lint check has been disabled."
 		exit 0
 	fi

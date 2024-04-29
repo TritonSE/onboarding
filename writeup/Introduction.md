@@ -25,7 +25,7 @@ In TSE, your team's product manager and designers will plan out most of the proj
 
 ## Tools and technologies
 
-The engineering manager on each TSE project chooses its tech stack (programming languages and frameworks) before development starts. The **MERN stack** (MongoDB, Express, React, Node) is very popular in the industry, so it's been our most common stack historically and we'll use it for this todo list app too. Beyond that, we'll use **TypeScript** to write our actual code, **Jest** to test it, and **Git** to manage version history. Expand the sections below to learn more about each piece of this tech stack.
+The engineering manager on each TSE project chooses its tech stack (programming languages and frameworks) before development starts. The **MERN stack** (MongoDB, Express, React, Node) is very popular in the industry, so it's been our most common stack historically and we'll use it for this todo list app too. Beyond that, we'll use **TypeScript** to write our actual code, **Vitest** to test it, and **Git** to manage version history. Expand the sections below to learn more about each piece of this tech stack.
 
 <details>
 <summary><strong>ℹ️ Definition: Frontend vs. backend</strong></summary>
@@ -117,7 +117,7 @@ Websites are rendered (displayed) in a browser through a combination of HTML, CS
 
 However, it's tedious to write lots of individual HTML, CSS, and JS files. React makes development easier by **combining structure and functionality** under one unified JavaScript framework. See [Part 0](./part-0/) for some illustration with the files in the starter code.
 
-We used [Create React App](https://create-react-app.dev) (CRA) to initialize our React project in the `frontend` folder. It can be quite involved to get React, TypeScript, and all the other packages to work together, but CRA takes care of that for us. Some of the frontend code, therefore, was auto-generated.
+We used [Vite](https://vitejs.dev) to initialize our React project in the `frontend` folder. It can be quite involved to get React, TypeScript, and all the other packages to work together, but Vite takes care of that for us. Some of the frontend code, therefore, was auto-generated.
 
 Alternatives to React include AngularJS and Vue.js.
 
@@ -130,11 +130,13 @@ _…we recommend checking out the official [React quick start guide](https://rea
 
 </details>
 
-### Jest
+### Vitest
 
-[Jest](https://jestjs.io) is an **automated testing framework for JavaScript projects** that can work with many other specialized technologies, including React. We won't actually do much regarding testing in this guide because our focus is on core web development skills, but your engineering manager may place more emphasis on testing for your project.
+[Vitest](https://vitest.dev) is an **automated testing framework for Vite projects** that can work with many other specialized technologies, including React. We won't actually do much regarding testing in this guide because our focus is on core web development skills, but your engineering manager may place more emphasis on testing for your project.
 
-We also use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for extra powerful integration between Jest and React. RTL essentially simulates a browser, including the ability to render React components and trigger user interaction events.
+Vitest is modeled after another well-known testing framework called [Jest](https://jestjs.io), following essentially the same patterns.
+
+We also use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for extra powerful integration with React. RTL essentially simulates a browser, including the ability to render React components and trigger user interaction events.
 
 ### Git and GitHub
 
