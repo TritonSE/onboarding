@@ -196,7 +196,6 @@ There are many valid approaches to writing CSS—we'll use flexbox layout, which
     ```css
     .item {
       height: 3rem;
-      border-bottom: 1px solid var(--color-text-secondary);
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -212,6 +211,7 @@ There are many valid approaches to writing CSS—we'll use flexbox layout, which
     ```css
     .textContainer {
       height: 100%;
+      border-bottom: 1px solid var(--color-text-secondary);
       flex-grow: ???;
       display: flex;
       flex-direction: ???;
