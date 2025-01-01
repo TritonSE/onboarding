@@ -14,7 +14,7 @@ export interface CheckButtonProps {
  * Both come from the `public` folder--thanks to Create React App, anything in
  * that folder is automatically made available as a public file, so it's a good
  * place to store static icons and images. (You can also view the icons directly
- * in your browser by visiting, say, `localhost:3000/checkButton.checked.svg`.)
+ * in your browser by visiting, say, `localhost:5173/checkButton.checked.svg`.)
  */
 export const CheckButton = React.forwardRef<HTMLButtonElement, CheckButtonProps>(
   function CheckButton({ checked, disabled, onPress, className }: CheckButtonProps, ref) {

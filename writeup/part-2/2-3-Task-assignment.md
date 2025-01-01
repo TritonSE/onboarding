@@ -25,7 +25,7 @@ Finally, we'll add the ability to assign users to tasks and see who is the assig
    <details>
    <summary><strong>❓ Hint: CORS errors</strong></summary>
 
-   _You might encounter a CORS (Cross-Origin Resource Sharing) permission error caused by the profile picture. This happens because browsers block requests for any resource that's not from the same origin (in our case, `localhost:3000`) by default for security reasons. You can ignore these errors and just use the example profile pictures that we provided (see [Part 2.1](./2-1-Users.md))._
+   _You might encounter a CORS (Cross-Origin Resource Sharing) permission error caused by the profile picture. This happens because browsers block requests for any resource that's not from the same origin (in our case, `localhost:5173`) by default for security reasons. You can ignore these errors and just use the example profile pictures that we provided (see [Part 2.1](./2-1-Users.md))._
    </details>
 
 4. Add styles to the `UserTag` component. You should just need some layout styling and a `border-radius` on the profile picture.
