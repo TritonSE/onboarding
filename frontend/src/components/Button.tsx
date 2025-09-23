@@ -13,10 +13,10 @@ import styles from "src/components/Button.module.css";
  * really useful for super basic "atom" components---most higher-level ones should have a pretty
  * limited, explicitly defined set of props.
  */
-export interface ButtonProps extends React.ComponentProps<"button"> {
+export type ButtonProps = {
   label: string;
   kind?: "primary" | "secondary";
-}
+} & React.ComponentProps<"button">;
 
 /**
  * This `Button` is pretty straightforward, besides the use of `React.forwardRef`. A ref is a way to
@@ -32,10 +32,13 @@ export interface ButtonProps extends React.ComponentProps<"button"> {
  * the `<button>`. Thus our `Button` component works mostly like a standard `<button>` element, but
  * with our own styling and restrictions on what can be put inside of it.
  */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { label, kind = "primary", className, ...props },
+export const Button = function Button({
   ref,
-) {
+  label,
+  kind = "primary",
+  className,
+  ...props
+}: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) {
   let buttonClass = styles.button;
   switch (kind) {
     case "primary":
@@ -49,8 +52,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
     buttonClass += ` ${className}`;
   }
   return (
-    <button ref={ref} className={buttonClass} {...props}>
+    <button ref={ref} className={buttonClass} type="button" {...props}>
       {label}
     </button>
   );
-});
+};

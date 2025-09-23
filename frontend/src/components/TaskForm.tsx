@@ -5,11 +5,11 @@ import styles from "src/components/TaskForm.module.css";
 
 import type { Task } from "src/api/tasks";
 
-export interface TaskFormProps {
+export type TaskFormProps = {
   mode: "create" | "edit";
   task?: Task;
   onSubmit?: (task: Task) => void;
-}
+};
 
 /**
  * A simple way to handle error states in the form. We'll keep a
@@ -23,9 +23,9 @@ export interface TaskFormProps {
  * so this is slightly overengineered. However, a more complex form would need
  * a similar system.
  */
-interface TaskFormErrors {
+type TaskFormErrors = {
   title?: boolean;
-}
+};
 
 /**
  * The form that creates or edits a Task object. In the MVP, this is only
@@ -68,10 +68,12 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
           // If the problem is something we don't really control, such as network
           // issues or an unexpected exception on the server side, then use a
           // banner, modal, popup, or similar.
+          // eslint-disable-next-line no-alert
           alert(result.error);
         }
         setLoading(false);
       })
+      // eslint-disable-next-line no-alert
       .catch((reason) => alert(reason));
   };
 
@@ -106,7 +108,6 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
         handle it specially (because it's inside a `<form>`) */}
         <Button
           kind="primary"
-          type="button"
           data-testid="task-save-button"
           label="Save"
           disabled={isLoading}

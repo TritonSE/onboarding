@@ -16,7 +16,7 @@ type Method = "GET" | "POST" | "PUT";
  * See https://vitejs.dev/guide/env-and-mode for more info about env variables
  * in Vite projects.
  */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 
 /**
  * A wrapper around the built-in `fetch()` function that abstracts away some of
@@ -70,9 +70,9 @@ async function assertOk(response: Response): Promise<void> {
   try {
     const text = await response.text();
     if (text) {
-      message += ": " + text;
+      message += `: ${text}`;
     }
-  } catch (e) {
+  } catch (_e) {
     // skip errors
   }
 

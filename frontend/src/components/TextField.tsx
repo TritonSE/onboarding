@@ -9,18 +9,21 @@ import styles from "src/components/TextField.module.css";
  * because we will set `type="text"` on the underlying `<input>` component, so there's no point in
  * allowing the developer to pass that prop in themselves.
  */
-export interface TextFieldProps extends Omit<React.ComponentProps<"input">, "type"> {
+export type TextFieldProps = {
   label: string;
   error?: boolean;
-}
+} & Omit<React.ComponentProps<"input">, "type">;
 
 /**
  * See `src/components/Button.tsx` for an explanation of `React.forwardRef`.
  */
-export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(function TextField(
-  { label, error = false, className, ...props },
+export const TextField = function TextField({
   ref,
-) {
+  label,
+  error = false,
+  className,
+  ...props
+}: TextFieldProps & { ref?: React.RefObject<HTMLInputElement | null> }) {
   let wrapperClass = styles.wrapper;
   if (className) {
     wrapperClass += ` ${className}`;
@@ -37,4 +40,4 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(func
       </label>
     </div>
   );
-});
+};
