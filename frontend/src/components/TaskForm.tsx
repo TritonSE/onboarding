@@ -1,3 +1,4 @@
+import { Dialog } from "@tritonse/tse-constellation";
 import { useState } from "react";
 import { createTask } from "src/api/tasks";
 import { Button, TextField } from "src/components";
@@ -42,6 +43,7 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
   const [description, setDescription] = useState<string>(task?.description || "");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<TaskFormErrors>({});
+  const [errorModalMessage, setErrorModalMessage] = useState<string | null>(null);
 
   const handleSubmit = () => {
     // first, do any validation that we can on the frontend
@@ -61,20 +63,18 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
           if (onSubmit) onSubmit(result.data);
         } else {
           // You should always clearly inform the user when something goes wrong.
-          // In this case, we're just doing an `alert()` for brevity, but you'd
-          // generally want to show some kind of error state or notification
+          // In this case, we're using the Constellation `Dialog` component to show a popup.
+          // For errors, you generally want to show some kind of error state or notification
           // within your UI. If the problem is with the user's input, then use
           // the error states of your smaller components (like the `TextField`s).
           // If the problem is something we don't really control, such as network
           // issues or an unexpected exception on the server side, then use a
           // banner, modal, popup, or similar.
-          // eslint-disable-next-line no-alert
-          alert(result.error);
+          setErrorModalMessage(result.error);
         }
         setLoading(false);
       })
-      // eslint-disable-next-line no-alert
-      .catch((reason) => alert(reason));
+      .catch(setErrorModalMessage);
   };
 
   const formTitle = mode === "create" ? "New task" : "Edit task";
@@ -114,6 +114,18 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
           onClick={handleSubmit}
         />
       </div>
+      {/* Use the Constellation Dialog component to display an error message if there's an error 
+      See the docs (https://tritonse.github.io/TSE-Constellation/?path=/docs/organisms-dialog--documentation)
+      for a demo and more info on the prop types  */}
+      <Dialog
+        styleVersion="styled"
+        variant="error"
+        title="An error occurred"
+        // Override the text color so it doesn't show white text on a white background
+        content={<p className={styles.errorModalText}>{errorModalMessage}</p>}
+        isOpen={errorModalMessage !== null}
+        onClose={() => setErrorModalMessage(null)}
+      />
     </form>
   );
 }
