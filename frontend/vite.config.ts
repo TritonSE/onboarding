@@ -12,5 +12,10 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
+    // Inline the Constellation import to avoid errors about not being
+    // able to import CSS files
+    deps: {
+      inline: ["@tritonse/tse-constellation"],
+    },
   },
 });
