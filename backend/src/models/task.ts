@@ -1,4 +1,6 @@
-import { InferSchemaType, Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
+
+import type { InferSchemaType } from "mongoose";
 
 const taskSchema = new Schema({
   title: { type: String, required: true },

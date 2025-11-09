@@ -27,3 +27,7 @@
   max-width: none;
   flex-grow: 1;
 }
+
+.errorModalText {
+  color: var(--color-tse-navy-blue);
+}

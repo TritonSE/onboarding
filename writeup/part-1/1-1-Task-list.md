@@ -46,6 +46,10 @@ _In a real project, we could use a route like this to search and sort/filter Tas
 
 </details>
 
+### High-level request flow diagram
+
+![](../images/get_tasks_backend_flow.png)
+
 ### Walkthrough
 
 1. In `backend/src/controllers`, create a new file `tasks.ts`.
@@ -316,12 +320,12 @@ There are many valid approaches to writing CSS—we'll use flexbox layout, which
 6. Fill in the case where `tasks` is empty (`tasks.length === 0`). You can just render a paragraph (`<p>...</p>`) and paste the empty list message from Figma.
 7. Fill in the other case, where `tasks` is not empty. Here we want to [render a list](https://react.dev/learn/rendering-lists) of `TaskItem` components (we recommend that you skim the linked tutorial if you're new to React, because this pattern is very common). Use the `_id` of each task as the key.
 8. Add `TaskList` to the Home page (`frontend/src/pages/Home.tsx`) with the title "All tasks". Verify that it shows up with the empty list message (since we haven't implemented retrieving the list from the backend yet).
-9. Fill in the `useEffect` hook. We want to call the `getAllTasks` function that we wrote earlier (it's already been imported). If the request succeeds, use `setTasks()` to replace the `tasks` state variable with the newly retrieved array of `Tasks`. If it fails, use `alert()` to display the error. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case).
+9. Fill in the `useEffect` hook. We want to call the `getAllTasks` function that we wrote earlier (it's already been imported). If the request succeeds, use `setTasks()` to replace the `tasks` state variable with the newly retrieved array of `Tasks`. If it fails, use the Constellation `Dialog` component to display the error. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case) and display an error if it fails.
 10. Add some CSS classes to `TaskList.module.css` and add the corresponding `className` props to `TaskList.tsx`.
     1. We need one class for the list title, which uses the heading font. This works similarly to the title and description classes from `TaskItem`.
     2. We need another class for the inner `<div>`, which is the item container. Use flexbox again to align its children: column direction, horizontally stretched. The item container itself should also have `width: 100%`.
     3. Finally, we need a class for the outermost list container `<div>`. This just needs a top margin of 3rem.
-11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form (making sure to test things like super long titles and descriptions) and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack.
+11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form (making sure to test things like super long titles and descriptions) and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack or use your dev tools to debug (see below)!
 
 <details>
 <summary><strong>✅ Good practice: List element instead of generic div</strong></summary>
@@ -329,6 +333,33 @@ There are many valid approaches to writing CSS—we'll use flexbox layout, which
 _Since this component is a list of items, it would be better to use the actual unordered list and list item elements (`<ul>` and `<li>` respectively) instead of a bunch of nested `<div>`s. (Alternatively, we could use the ARIA `list` and `listitem` roles.) Doing so would help screen readers and other assistive software determine the purpose of these elements more easily. However, we would also have to override some default styling (such as removing the bullet points of each `<li>`), so we chose to avoid that in this guide for simplicity._
 
 </details>
+
+### Debugging: Browser Dev Tools
+
+One powerful way to debug network requests (e.g. when the front end fetches all tasks from the back end) is using your browser's development (dev) tools.
+
+To open your dev tools, right click the web page and click "Inspect" from the bottom of the dropdown menu. Alternatively, enter Ctrl + Shift + I on your keyword (or Cmd + Shift + I on Mac).
+
+![](../images/open_inspect.png)
+
+From there, you'll be taken to a menu with several tabs for debugging:
+
+- **Elements** shows all HTML elements on the page, along with CSS style rules, and can be used to debug when content doesn't show up correctly on the page
+- **Console** renders an interactive JavaScript console where you can evaluate expressions, query for elements on the page, initiate network requests, etc.
+- **Network** shows a log of all network (HTTP) requests made by the page, and allows filtering and viewing requests/responses. It's an excellent tool for debugging why a request isn't succeeding, as it shows HTTP response status codes, CORS errors, response bodies, and more.
+
+![](../images/devtools.png)
+
+The screenshot below is an example of using the Network tab to inspect a request to create a new task in our application. The following tabs may be useful:
+
+- **Headers** shows request URL & method, as well as request and response HTTP headers. Headers contain metadata about the request data such as content type, length, caching, proxies, etc.
+- **Payload** shows the request body
+- **Preview** shows the parsed response body
+- **Response** shows the raw response text/binary data
+
+![](../images/inspect_network.png)
+
+For more information, see [this Chrome tutorial](https://developer.chrome.com/docs/devtools/javascript) about how to debug JavaScript using dev tools, and [this Firefox tutorial](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools) about the dev tools overall.
 
 ## Commit to Git
 
@@ -338,7 +369,7 @@ Once you have all of the above working correctly, follow the steps below to save
 2. Run `git status` and check the output to make sure you're on your Part 1 branch. If not, run `git checkout part-1`. The output should also list all the files you've changed so far under "Changes not staged for commit."
 3. Run `git add .` to "stage" all of the changes. (The `.` denotes everything in the current folder; you can also specify particular folders or files.) If you run `git status` again, you should see that your changes have become "Changes to be committed."
 4. Run `git commit -m 'Implement part 1.1'` to commit your changes to the `part-1` branch locally. You can write your own commit message in between the quotes.
-5. Wait for the pre-commit hook to finish. This uses a custom TSE script to check that all files are correctly formatted. If the pre-commit hook fails, read through the output and fix the problems, then run the `git commit` command again.
+5. Wait for the pre-commit hook to finish. This uses a custom TSE script to check that all files are correctly formatted and that there are no linter errors. It also checks that no secret credentials are being exposed in the commit. If the pre-commit hook fails, read through the output and fix the problems, then run the `git commit` command again.
 6. Run `git push` to push the current state of your branch to your remote fork. Since this is the first time you're pushing this branch, it will fail and give you another command to run instead. Paste that command and run it. In the future, on this branch, you can just run `git push`.
 7. Open your fork in GitHub and click on the branch dropdown on the left. You should see a new branch called `part-1`. You'll probably also see a banner at the top of the page telling you that you have a new branch.
 

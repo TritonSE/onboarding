@@ -34,7 +34,7 @@ vi.mock("src/api/tasks", () => ({
    *
    * See https://vitest.dev/guide/mocking#functions for more info about mock functions.
    */
-  createTask: vi.fn((_params: CreateTaskRequest) => Promise.resolve({ success: true })),
+  createTask: vi.fn(async (_params: CreateTaskRequest) => Promise.resolve({ success: true })),
 }));
 
 /**
@@ -86,7 +86,7 @@ afterEach(() => {
  * ```
  * See https://vitest.dev/api/#describe for more information.
  */
-describe("TaskForm", () => {
+describe("taskForm", () => {
   /**
    * The `it` function defines a single test. The first parameter is a string
    * that names the test. You should follow the format below (starts with a

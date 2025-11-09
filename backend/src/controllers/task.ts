@@ -2,11 +2,12 @@
  * Functions that process task route requests.
  */
 
-import { RequestHandler } from "express";
-import createHttpError from "http-errors";
 import { validationResult } from "express-validator";
+import createHttpError from "http-errors";
 import TaskModel from "src/models/task";
 import validationErrorParser from "src/util/validationErrorParser";
+
+import type { RequestHandler } from "express";
 
 /**
  * This is an example of an Express API request handler. We'll tell Express to
@@ -46,19 +47,27 @@ export const getTask: RequestHandler = async (req, res, next) => {
   }
 };
 
+// Define a custom type for the request body so we can have static typing
+// for the fields
+type CreateTaskBody = {
+  title: string;
+  description?: string;
+  isChecked?: boolean;
+};
+
 export const createTask: RequestHandler = async (req, res, next) => {
   // extract any errors that were found by the validator
   const errors = validationResult(req);
-  const { title, description, isChecked } = req.body;
+  const { title, description, isChecked } = req.body as CreateTaskBody;
 
   try {
     // if there are errors, then this function throws an exception
     validationErrorParser(errors);
 
     const task = await TaskModel.create({
-      title: title,
-      description: description,
-      isChecked: isChecked,
+      title,
+      description,
+      isChecked,
       dateCreated: Date.now(),
     });
 

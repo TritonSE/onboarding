@@ -21,7 +21,7 @@
    <details>
    <summary><strong>🤔 For new developers: Automatic PR checks</strong></summary>
 
-   _We use GitHub Actions to run some automatic checks on every PR in this repo. They make sure that all files follow Prettier and ESLint rules and that all unit tests pass before you're allowed to merge. If one of these checks fails, investigate it by clicking on the Details link and try to fix the problem. If you're still stuck, feel free to reach out in **#onboarding** for help._
+   _We use GitHub Actions to run some automatic checks on every PR in this repo. They make sure that all files follow Prettier and ESLint rules and that all unit tests pass before you're allowed to merge. If one of these checks fails, investigate it by clicking on the Details link and try to fix the problem. If you're still stuck, feel free to reach out in **#onboarding** for help. We configure these checks in the `.github/workflows` directory; take a look if you're curious!_
    </details>
    <details>
    <summary><strong>✅ Good practice: Keep main commit history clean</strong></summary>

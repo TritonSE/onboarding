@@ -23,6 +23,10 @@ _A minimum viable product is a project version that only contains the features n
 
 In TSE, your team's product manager and designers will plan out most of the project's features before development starts. Typically, they'll create a project proposal and other documents that you can refer to for information about how certain features should work, and a Figma file with the frontend design prototypes. We explain each feature of this todo list app in this guide, so there's no separate proposal or writeup, but you should familiarize yourself with our [todo app Figma designs](https://www.figma.com/file/8eRDNyOrYRgyN7NNb0mIXA/Onboarding-Todo-App) in [Part 0](./part-0/).
 
+## Submission
+
+Completion of this onboarding repository is **required** for all new TSE members, and highly recommended for returning members who haven't completed it yet. After completing the tasks, you will submit a video demo of your work to your engineering manager (EM); see [the conclusion](./Conclusion.md#submission-instructions) for details on what to submit!
+
 ## Tools and technologies
 
 The engineering manager on each TSE project chooses its tech stack (programming languages and frameworks) before development starts. The **MERN stack** (MongoDB, Express, React, Node) is very popular in the industry, so it's been our most common stack historically and we'll use it for this todo list app too. Beyond that, we'll use **TypeScript** to write our actual code, **Vitest** to test it, and **Git** to manage version history. Expand the sections below to learn more about each piece of this tech stack.
@@ -137,6 +141,14 @@ _…we recommend checking out the official [React quick start guide](https://rea
 Vitest is modeled after another well-known testing framework called [Jest](https://jestjs.io), following essentially the same patterns.
 
 We also use [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for extra powerful integration with React. RTL essentially simulates a browser, including the ability to render React components and trigger user interaction events.
+
+### TSE Constellation
+
+[TSE Constellation](https://github.com/TritonSE/TSE-Constellation) is a **TSE-specific design system and library** for TSE projects. It's a library of React components for common frontend functionality, including buttons, input fields, popups, accordions, and much more!
+
+We've been aiming to adopt Constellation into our TSE projects over the past couple years because it helps developers save time by not having to write standard, reusable components that are largely the same in every project. Interactive documentation for Constellation with demos and examples can be found on the [Storybook page](https://tritonse.github.io/TSE-Constellation/?path=/docs/welcome--documentation).
+
+For examples of using Constellation in a real TSE project, see the [example project](https://github.com/TritonSE/Constellation-Example-Project), [TSE website](https://github.com/TritonSE/tritonse.github.io), and [Fulcrum](https://github.com/TritonSE/TSE-Fulcrum). Constellation is still a new library and may have some bugs or lack of extensibility, so please message the **#onboarding** Slack channel if you run into issues of have suggestions to improve it!
 
 ### Git and GitHub
 

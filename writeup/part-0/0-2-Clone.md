@@ -54,8 +54,8 @@ We're almost ready to run the project for the first time! Before we can do that,
 
 An **environment variable** is a value stored in the shell environment which a program can access while it's running. Like variables in code, they have a name (such as "PORT") and a value (such as "3001"). They are often used to store information like:
 
-- Values which change depending on whether the program is running in development or production mode (for example, 127.0.0.1 in the MONGODB_URI represents your own computer; when the backend is running on a real server, we might change that to a real IP address)
-- Sensitive data that should not be stored in Git (such as secret API keys and passwords)
+- Values which change depending on whether the program is running in development or production mode (for example, 127.0.0.1 in the MONGODB_URI represents your own computer; when the backend is running on a remote server, we might change that to a remote IP address)
+- Sensitive data that should not be stored in Git (such as secret API keys and passwords). TSE uses a custom secret scanner script to ensure that this sensitive data is not committed to GitHub, where anyone could access it. You can try it out by running `node .secret-scan/secret-scan.js`.
 
 </em>
 </details>

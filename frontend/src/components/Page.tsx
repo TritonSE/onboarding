@@ -2,9 +2,9 @@ import React from "react";
 import { HeaderBar } from "src/components/HeaderBar";
 import styles from "src/components/Page.module.css";
 
-export interface PageProps {
+export type PageProps = {
   children: React.ReactNode;
-}
+};
 
 export const Page = ({ children }: PageProps) => {
   return (

@@ -24,9 +24,9 @@ Next, we'll add a new frontend page that displays information about a particular
 4. In `frontend/src/App.tsx`, add a new [`Route` component](https://reactrouter.com/en/main/route/route) with path `"/task/:id"` and element `<TaskDetail />`.
 5. With the frontend running locally, test that the new page is reachable by entering the following URL in your browser: `localhost:5173/task/<id>`, where <id> is the ID of any Task object in your local database.
 6. Within the `TaskDetail` component, add a state variable `task` which will store the Task object and add a `useEffect` hook which retrieves the task and puts it into that state variable.
-   1. Use the [`useParams` hook](https://reactrouter.com/en/main/hooks/use-params) from React Router to get the task ID from the URL (this is called a [dynamic segment](https://reactrouter.com/en/main/route/route#dynamic-segments)). This ID should be the only dependency of the `useEffect` hook.
+   1. Use the [`useParams` hook](https://reactrouter.com/en/main/hooks/use-params) from React Router to get the task ID from the URL (this is called a [dynamic segment](https://reactrouter.com/en/main/route/route#dynamic-segments)). This ID should be the only dependency of the `useEffect` hook. Make sure to put the `useParams` call at the top-level of the component, **not** inside the `useEffect` call, as that would break the [rules of hooks](https://react.dev/warnings/invalid-hook-call-warning).
    2. Use the `getTask` function from `frontend/src/api/tasks.ts` to retrieve the task from the backend.
-7. Add the various text components, Home page link, and "Edit task" button as shown in the Figma. Be sure to style them correctly—you can add a new CSS file `pages/TaskDetail.module.css` for font and layout styling—and to conditionally render things as needed. Also, use the `Helmet` component to set the page title as specified above.
+7. Add the various text components, Home page link, and "Edit task" button as shown in the Figma. Be sure to style them correctly—you can add a new CSS file `pages/TaskDetail.module.css` for font and layout styling—and to conditionally render things as needed. Also, use the `title` HTML tag to set the page title as specified above.
    <details>
    <summary><strong>❓ Hint: Date-time formatting</strong></summary>
 

@@ -74,6 +74,10 @@ Let's trace the code path from `src/server.ts` to `src/controllers/task.ts` to u
 </em>
 </details>
 
+Example request flow: creating a new task
+
+![](../images/create_task_backend_flow.png)
+
 ### Frontend files
 
 - [`package.json`](/frontend/package.json), like the one in the backend folder, **denotes a Node package.** Similarly, we also have a `package-lock.json` file and a `node_modules` folder.

@@ -2,7 +2,7 @@
 
 **Minimum viable product**
 
-Estimated time: 2 to 8 hours
+Estimated time: 4 to 12 hours
 
 In Part 1, we'll implement the MVP of this application with the following features:
 

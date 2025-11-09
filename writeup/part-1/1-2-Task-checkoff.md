@@ -88,6 +88,9 @@ _Here we just replace the entire Task object with the provided data, even the `d
      -H "Content-Type: application/json" \
      -d '{"_id":"<the same ID>","title":"<Your title>","description":"<Your description>","isChecked":false,"dateCreated":"2023-10-01T00:00Z"}'
    ```
+
+   If you're on Windows PowerShell and you get an error, trying using `curl.exe` instead of just `curl`. This is necessary because on Windows, `curl` aliases to a different tool with different syntax than the `curl` command, unless you specify `curl.exe`.
+
    You should see the Task updated with its new data when you list all Tasks in mongosh and when you view the frontend Home page.
 7. Copy the skeleton code below into `frontend/src/api/tasks.ts`:
    ```typescript
