@@ -43,6 +43,10 @@ export function TaskForm({ mode, task, onSubmit }: TaskFormProps) {
   const [description, setDescription] = useState<string>(task?.description || "");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<TaskFormErrors>({});
+
+  // This state variable controls the error message that gets displayed to the user in the
+  // Constellation `Dialog` component. If it's `null`, there's no error, so we don't display the Dialog.
+  // If it's non-null, there is an error, so we should display that error to the user.
   const [errorModalMessage, setErrorModalMessage] = useState<string | null>(null);
 
   const handleSubmit = () => {
