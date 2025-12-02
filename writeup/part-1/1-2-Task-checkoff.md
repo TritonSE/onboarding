@@ -76,13 +76,15 @@ _Here we just replace the entire Task object with the provided data, even the `d
    };
    ```
 2. Use the `validationResult` and `validationErrorParser` functions to validate the request body. See the `createTask` function in the same file for an example. `validationErrorParser` will stop the request and generate a 400 response by itself if the request body doesn't contain valid Task data.
-3. Compare the `:id` from the request URL (`req.params.id`; see `getTask` for an example) with the `_id` in the request body (`req.body._id`). If they're not equal, return a 400 response (just call `res.status(400);`).
-4. Use the [`Model.findByIdAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()>) Mongoose function to update the Task in the database with the given ID. (Actually, there are several functions you can use; any approach that works is valid.)
+3. Add an `UpdateTaskBody` type similar to `CreateTaskBody`. Then, when you extract fields from `req.body`, cast `req.body` to `UpdateTaskBody`, like the `createTask` function does with `CreateTaskBody`. This provides type safety and avoids linter errors with unknown types.
+4. Compare the `:id` from the request URL (`req.params.id`; see `getTask` for an example) with the `_id` in the request body (`req.body._id`). If they're not equal, return a 400 response (just call `res.status(400);`).
+5. Use the [`Model.findByIdAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()>) Mongoose function to update the Task in the database with the given ID. (Actually, there are several functions you can use; any approach that works is valid.)
    1. Remember to `await` the returned `Query`.
    2. If the returned `Query` gives us null, then there was no object in the database with that ID. In that case, return a 404 response.
    3. Otherwise, return a 200 response containing the updated Task. The result of `findByIdAndUpdate` is the original Task, so you should execute a new query like in `getTask`.
-5. Add the new route to `src/routes/task.ts`. Similar to `createTask`, use the `updateTask` validation chain provided in `src/validators/task.ts`.
-6. Test your implementation. Make sure your backend is running locally, then call the new route through Postman or run the following command with your own values filled in:
+6. Add the new route to `src/routes/task.ts`. Similar to `createTask`, use the `updateTask` validation chain provided in `src/validators/task.ts`.
+7. Test your implementation. Make sure your backend is running locally, then call the new route through Postman or run the following command with your own values filled in:
+
    ```shell
    curl -X "PUT" http://127.0.0.1:3001/api/task/<paste a Task ID from your database here> \
      -H "Content-Type: application/json" \
@@ -92,7 +94,8 @@ _Here we just replace the entire Task object with the provided data, even the `d
    If you're on Windows PowerShell and you get an error, trying using `curl.exe` instead of just `curl`. This is necessary because on Windows, `curl` aliases to a different tool with different syntax than the `curl` command, unless you specify `curl.exe`.
 
    You should see the Task updated with its new data when you list all Tasks in mongosh and when you view the frontend Home page.
-7. Copy the skeleton code below into `frontend/src/api/tasks.ts`:
+
+8. Copy the skeleton code below into `frontend/src/api/tasks.ts`:
    ```typescript
    export async function updateTask(task: UpdateTaskRequest): Promise<APIResult<Task>> {
      try {
@@ -102,7 +105,7 @@ _Here we just replace the entire Task object with the provided data, even the `d
      }
    }
    ```
-8. Using the existing functions as guides, complete the implementation of `updateTask`.
+9. Using the existing functions as guides, complete the implementation of `updateTask`.
 
 ## Update to component: `TaskItem`
 
@@ -110,7 +113,7 @@ _Here we just replace the entire Task object with the provided data, even the `d
 
 - When the user presses the `CheckButton`, call the `updateTask` function to flip the value of `isChecked` for this `TaskItem`'s `Task` object.
 - Re-render the `TaskItem` when `updateTask` resolves to the updated `Task`.
-  - If an error occurs, then just `alert()` the user.
+  - If an error occurs, then display a Constellation `Dialog` component to the user iwth the error message.
 - Prevent the user from pressing the `CheckButton` again until `updateTask` has resolved (this will require at least one additional state variable).
 
 ### Walkthrough
@@ -140,7 +143,7 @@ _Here we just replace the entire Task object with the provided data, even the `d
    _An easy way to do this is to use JavaScript's [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals). You can write something like `{ ...task, isChecked: !task.isChecked }`. This is preferable because it's concise and it creates a (shallow) copy of `task`; we shouldn't modify `task` or any other props directly because that might cause unintended side effects._
    </details>
 
-3. When `updateTask` resolves, call `setTask` with the new task from the response (or `alert()` the user again if it failed) and set `isLoading` back to false. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case).
+3. When `updateTask` resolves, call `setTask` with the new task from the response (or use the Constellation `Dialog` component to the user if it failed; see) and set `isLoading` back to false. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case) and display the `Dialog` with a state variable for an error message.
    <details>
    <summary><strong>🤔 For new developers: await or async</strong></summary>
 
