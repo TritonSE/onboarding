@@ -113,7 +113,7 @@ _Here we just replace the entire Task object with the provided data, even the `d
 
 - When the user presses the `CheckButton`, call the `updateTask` function to flip the value of `isChecked` for this `TaskItem`'s `Task` object.
 - Re-render the `TaskItem` when `updateTask` resolves to the updated `Task`.
-  - If an error occurs, then display a Constellation `Dialog` component to the user iwth the error message.
+  - If an error occurs, then display a Constellation `Dialog` component to the user with the error message.
 - Prevent the user from pressing the `CheckButton` again until `updateTask` has resolved (this will require at least one additional state variable).
 
 ### Walkthrough
@@ -143,7 +143,7 @@ _Here we just replace the entire Task object with the provided data, even the `d
    _An easy way to do this is to use JavaScript's [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals). You can write something like `{ ...task, isChecked: !task.isChecked }`. This is preferable because it's concise and it creates a (shallow) copy of `task`; we shouldn't modify `task` or any other props directly because that might cause unintended side effects._
    </details>
 
-3. When `updateTask` resolves, call `setTask` with the new task from the response (or use the Constellation `Dialog` component to the user if it failed; see) and set `isLoading` back to false. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case) and display the `Dialog` with a state variable for an error message.
+3. When `updateTask` resolves, call `setTask` with the new task from the response (or use the Constellation `Dialog` component to the user if it failed) and set `isLoading` back to false. See the `handleSubmit` function in `components/TaskForm.tsx` for an example of how to handle the result of a request (the request is `createTask` in that case) and display the `Dialog` with a state variable for an error message.
    <details>
    <summary><strong>🤔 For new developers: await or async</strong></summary>
 
