@@ -324,7 +324,8 @@ There are many valid approaches to writing CSS—we'll use flexbox layout, which
 10. Add some CSS classes to `TaskList.module.css` and add the corresponding `className` props to `TaskList.tsx`.
     1. We need one class for the list title, which uses the heading font. This works similarly to the title and description classes from `TaskItem`.
     2. We need another class for the inner `<div>`, which is the item container. Use flexbox again to align its children: column direction, horizontally stretched. The item container itself should also have `width: 100%`.
-    3. Finally, we need a class for the outermost list container `<div>`. This just needs a top margin of 3rem.
+    3. We need another class for the outermost list container `<div>`. This just needs a top margin of 3rem.
+    4. Finally, we need a class for the `Dialog`'s content to override the text color to be blue instead of white since it's on a white background. See `TaskForm.module.css` and `TaskForm.tsx` for an example of how to do this using the `errorModalText` CSS class.
 11. Check the Home page again. You should see all the Tasks that you've created so far, matching the Figma design. Submit some more through the "New task" form (making sure to test things like super long titles and descriptions) and refresh the page. The new Tasks should appear in the list. Again, if something's not working and you can't figure it out, ping us in **#onboarding** on Slack or use your dev tools to debug (see below)!
 
 <details>
